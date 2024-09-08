@@ -6,7 +6,7 @@ $xml = simplexml_load_file('https://academictorrents.com/database.xml');
 
 $items = $xml->channel->item;
 
-function search_by_name($query, $category)
+function search_by_name_bk($query, $category)
 {
     global $config, $xml, $items;
 
@@ -60,6 +60,105 @@ function search_by_name($query, $category)
     }
     return $results;
 }
+
+function search_by_name($query, $category)
+{
+    global $config, $xml, $items;
+
+    // example "data structure"
+    $query = trim(strtolower($query));
+    $results_title = array();
+    $results_description = array();
+
+
+
+    foreach ($items as $item) {
+        $title = (string) $item->title;
+
+
+        $file_category = (string) $item->category;
+        $description = (string) $item->description;
+        $infohash = (string) $item->infohash;
+        $magnet = "magnet:?xt=urn:btih:$infohash&dn=$title" . $config->academic_torrent_trackers;
+        $size = $item->size;
+
+        // making it lower to retrive result wihout distingush in case
+        $title_lower = strtolower($title);
+        $description_lower = strtolower($description);
+        $size = human_filesize($size);
+
+
+        $pattern = "/" . $query . "/";
+        $match_in_title = preg_match($pattern, $title_lower);
+        $match_in_description = preg_match($pattern, $description_lower);
+
+        //creating two while
+        // 1. retrive all results from query that found in title and show all
+        // 2. retriving all results which the query found in description and show all after 1.
+
+        // retrive results if the query present in title first 
+        while ($match_in_title) {
+
+            if ($category == "All") {
+                array_push(
+                    $results_title,
+                    array(
+                        "title" => htmlspecialchars($title),
+                        "category" => $file_category,
+                        "description" => htmlspecialchars($description),
+                        "magnet" => $magnet,
+                        "size" => $size,
+                    )
+                );
+            } elseif ($category == $file_category) {
+                array_push(
+                    $results_title,
+                    array(
+                        "title" => htmlspecialchars($title),
+                        "category" => $file_category,
+                        "description" => htmlspecialchars($description),
+                        "magnet" => $magnet,
+                        "size" => $size,
+                    )
+                );
+            }
+            break;
+        }
+
+
+        // retrive results if the query present in description
+        while ($match_in_title == false && $match_in_description == true) {
+
+            if ($category == "All") {
+                array_push(
+                    $results_description,
+                    array(
+                        "title" => htmlspecialchars($title),
+                        "category" => $file_category,
+                        "description" => htmlspecialchars($description),
+                        "magnet" => $magnet,
+                        "size" => $size,
+                    )
+                );
+            } elseif ($category == $file_category) {
+                array_push(
+                    $results_description,
+                    array(
+                        "title" => htmlspecialchars($title),
+                        "category" => $file_category,
+                        "description" => htmlspecialchars($description),
+                        "magnet" => $magnet,
+                        "size" => $size,
+                    )
+                );
+            }
+            break;
+        }
+    }
+    $results = array_merge($results_title, $results_description);
+    return $results;
+}
+
 
 
 function print_academic_torrents_results($results)

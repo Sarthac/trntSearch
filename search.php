@@ -62,6 +62,8 @@ switch ($site) {
         include "academic_torrents.php";
         $results = search_by_name($query, $category);
         print_academic_torrents_results($results);
+        // search_by_name($query, $category);
+
         break;
 
     case "piratebay":
