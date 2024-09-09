@@ -273,6 +273,9 @@ h1 {
     text-align: center;
 }
 
+.text-decoration-solid {
+  text-decoration: underline solid;
+}
 
 .cursor {
     cursor: pointer;

@@ -39,7 +39,7 @@ require_once 'misc/header.php';
         </div>
 
         <div class="margin-top-50 text-align-ceter">
-            <a href="./instances.php">trntSearch can be accessible on tor and i2p</a>
+            <a class="text-decoration-solid" href="./instances.php">trntSearch can be accessible on tor and i2p</a>
         </div>
 
 
