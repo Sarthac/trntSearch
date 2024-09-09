@@ -37,8 +37,14 @@ require_once 'misc/header.php';
                 <option value="Paper">Paper</option>
             </select>
         </div>
-    </form>
 
+        <div class="margin-top-50 text-align-ceter">
+            <a href="./instances.php">trntSearch can be accessible on tor and i2p</a>
+        </div>
+
+
+
+    </form>
 </body>
 
 </html>
