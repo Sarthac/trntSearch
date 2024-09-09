@@ -474,12 +474,11 @@ li h3 {
         border-radius: 18px;
     }
 
-    td a {
-    display: block;
-    overflow: auto;
-    white-space: nowrap;
-    width: 250px;
-
-}
+    .instance-table td a {
+        display: block;
+        overflow: auto;
+        white-space: nowrap;
+        width: 250px;
+    }
 
 }
