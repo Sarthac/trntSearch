@@ -152,6 +152,11 @@ th {
     background-color: var(--foreground-10);
 }
 
+td a {
+    display: block;
+    overflow: auto;
+
+}
 .yts-movie-name {
     background-color: var(--foreground-10);
 }
@@ -470,6 +475,12 @@ li h3 {
         width: 100%;
         padding: 20px;
         border-radius: 18px;
+    }
+
+    td a {
+        display: block;
+        overflow: auto;
+        max-height: 100px;
     }
 
 
