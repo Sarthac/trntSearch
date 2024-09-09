@@ -2,14 +2,16 @@
     font-family: Arial, Helvetica, sans-serif;
     --background-color: #000000;
     --input-background: #1B1B1B;
-    --line : rgba(255,255,255,0.25);
-    --foreground-100 : rgba(255,255,255);
-    --foreground-75 : rgba(255,255,255,0.75);
-    --foreground-50 : rgba(255,255,255,0.50);
-    --foreground-25 : rgba(255,255,255,0.25);
+    --line: rgba(255, 255, 255, 0.25);
+    --foreground-100: rgba(255, 255, 255);
+    --foreground-75: rgba(255, 255, 255, 0.75);
+    --foreground-50: rgba(255, 255, 255, 0.50);
+    --foreground-25: rgba(255, 255, 255, 0.25);
+    --foreground-10: rgba(255, 255, 255, 0.10);
+    --border-radius: 5px;
+
     color: var(--foreground-100);
     background-color: var(--background-color);
-    --border-radius: 5px;
     color-scheme: dark;
 }
 
@@ -17,7 +19,7 @@ html {
     scroll-behavior: smooth;
 }
 
-input{
+input {
     font-size: large;
 }
 
@@ -26,36 +28,39 @@ body {
     margin: 20px;
 }
 
-
 .input-wrap {
     position: relative;
 }
 
 
 .input-wrap input[type="text"] {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+    padding-right: 80px;
+    border: 1px solid var(--foreground-25);
+    border-radius: 18px;
+    background-color: var(--background-color);
 }
 
 .input-wrap button[type="submit"] {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  background-color: var(--foreground-100);
-  color: var(--background-color);
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    padding: 0;
 }
 
-.input-wrap button[type="submit"]:hover {
-  background-color: var(--foreground-75);
-  transition: ease-in-out 0.4s;
+.input-wrap button img {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 30px;
+    height: auto;
+    padding: 15px 20px;
+    border-radius: 0px 15px 15px 0px;
 }
 
 .search-container h1 {
@@ -64,7 +69,6 @@ body {
 }
 
 .search-container {
-    /* margin-top: 10%; */
     position: absolute;
     width: 650px;
     top: 40%;
@@ -74,17 +78,16 @@ body {
 
 
 .result-container {
-    /* margin-top: 10%; */
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.found-results{
-    margin-top:20px;
-    margin-bottom:30px;
-    font-size: large;   
+.found-results {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: large;
     display: block;
 
 }
@@ -98,54 +101,73 @@ select {
     padding: 10px;
     width: 200px;
     border-radius: 10px;
-    border: 1px rgb(82, 82, 82) solid;
+    border: 1px solid var(--foreground-25);
     margin-top: 20px;
 }
 
 select option {
     padding: 10px;
-
 }
 
 select {
     width: auto;
     margin-right: 10px;
+    background-color: var(--background-color);
 
 }
+
 table {
-  border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
 }
 
-th,td {
-  border: 1px solid var(--line);
-  padding: 10px; 
+th,
+td {
+    padding: 10px;
+    border-bottom: 1px solid var(--foreground-25);
+    border-right: 1px solid var(--foreground-25);    
 }
 
-td{
+table tr td:first-child, 
+table tr th:first-child {
+  border-left: 1px solid var(--foreground-25);
+}
+
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+
+td {
     color: var(--foreground-75);
 }
 
-th{
+th {
     border-top: 0px;
+    background-color: var(--foreground-10);
+}
+
+.yts-movie-name {
+    background-color: var(--foreground-10);
 }
 
 hr {
-    border-color : var(--line);
-}
-
-
-.search-container input:focus,
-.sub-search-container input:focus {
-  border: 1px solid rgb(136, 136, 136);
-  /* box-shadow: 0 0 0 1px white; */
-  outline: none;
+    border-color: var(--line);
 }
 
 .search-container input:active,
-.sub-search-container input:active {
-  border: 1px solid rgb(136, 136, 136);
-  /* box-shadow: 0 0 0 1px white; */
-  outline: none;
+.sub-search-container input:active,
+.search-container input:focus,
+.sub-search-container input:focus {
+    /* border: 1px solid rgb(136, 136, 136); */
+    border: 1px solid var(--foreground-75);
+    /* box-shadow: 0 0 0 1px white; */
+    outline: none;
 }
 
 .sub-search-container h1 a {
@@ -167,11 +189,12 @@ hr {
 .flex-row {
     display: flex;
     flex-direction: row;
-    
+
     /* justify-content: space-between; */
 
 
 }
+
 .flex-row img {
     height: 100%;
 
@@ -179,6 +202,7 @@ hr {
     margin: 0;
 
 }
+
 .flex-column {
     display: flex;
     flex-direction: column;
@@ -187,6 +211,7 @@ hr {
 
 
 }
+
 p {
     border: solid 1px var(--line);
     border-top: 0px;
@@ -196,12 +221,15 @@ p {
     color: white;
     color: var(--foreground-75);
 }
- h2 {
+
+h2 {
     border: solid 1px var(--line);
     margin: 0;
     padding: 20px;
     font-size: 20px;
     color: var(--foreground-100);
+    border-radius: 10px 10px 0px 0px;
+
 }
 
 
@@ -222,7 +250,7 @@ td {
 
 }
 
-.torrent-details{
+.torrent-details {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -238,6 +266,7 @@ td {
 h1 {
     text-decoration: underline;
     color: var(--foreground-100);
+    
 }
 
 .margin-top-40px {
@@ -325,15 +354,17 @@ li h3 {
     top: 0;
 }
 
-@media only screen and (max-width: 650px){
+@media only screen and (max-width: 650px) {
 
     body {
         width: 95%;
         margin-left: 2.5%;
     }
-    .flex-row{
+
+    .flex-row {
         flex-direction: column;
     }
+
     .flex-row img {
         width: 50%;
         margin-left: 25%;
@@ -354,6 +385,7 @@ li h3 {
     p {
         font-size: 16px;
     }
+
     .main {
         width: 95%;
     }
@@ -384,10 +416,12 @@ li h3 {
         height: auto;
         width: 280px;
     }
-    .search-container{
+
+    .search-container {
         width: 95%;
     }
-    .search-container h1{
+
+    .search-container h1 {
         font-size: 40px;
     }
 
@@ -399,22 +433,12 @@ li h3 {
         display: block;
     }
 
-
-    .floating-btn {
-        padding: 15px;
-        background-color: #414142;
-        position: fixed;
-        top: 15px;
-        right: 15px;
-        border-radius: var(--border-radius);
-    }
-
     .position-sticky {
         position: sticky;
 
     }
 
-    .mobile-logo{       
+    .mobile-logo {
         display: inline;
         text-align: center;
         display: block;
@@ -424,14 +448,13 @@ li h3 {
 
 
     .mobile-logo a {
-        font-size:xx-large; 
+        font-size: xx-large;
         text-decoration: none;
     }
 
     .input-wrap input[type="text"] {
         width: 100%;
         padding: 20px;
-        border: 1px solid #ccc;
         border-radius: 18px;
     }
 

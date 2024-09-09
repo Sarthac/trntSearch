@@ -19,7 +19,9 @@ $category = $_REQUEST["category"];
         <h1 class="no-decoration mobile-logo"><a href="./">trntSearch</a></h1>
         <div class="input-wrap">
             <input class="code" type="text" name="query" <?php echo "value=\"$query\""  ?>>
-            <button class="submit-button" type="submit">Search</button>
+            <button class="submit-button" type="submit">
+                <img src="./assets/search.png" alt="search-icon">
+            </button>
         </div>
         <div>
             <select name="site">

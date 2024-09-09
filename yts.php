@@ -81,7 +81,11 @@ function print_yts_torrent_results($response)
             echo "<div class=\"flex-row margin-bottom-100\">";
             echo "<img src=\"$img\" alt=\"movie-image\">";
             echo "<div class=\"t-width\">";
-            echo "<h2>$title</h2>";
+            echo "<h2";
+            if ($summary != null) {
+                echo " class=\"yts-movie-name\"";
+            }
+            echo ">{$title}</h2>";
 
             if ($summary != null) {
                 echo "<p> $summary </p>";

@@ -15,8 +15,11 @@ require_once 'misc/header.php';
     <form class=" search-container" action="search.php" method="get" autocomplete="off">
         <h1 class="no-decoration">trntSearch</h1>
         <div class="input-wrap">
-            <input class="code" type="text" name="query" autofocus>
-            <button class="submit-button" type="submit">Search</button>
+            <input class="code" type="text" name="query" placeholder="Search" autofocus>
+            <button class="submit-button" type="submit">
+                <img src="./assets/search.png" alt="search-icon">
+            </button>
+
         </div>
 
         <div>
