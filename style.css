@@ -474,7 +474,7 @@ li h3 {
         border-radius: 18px;
     }
 
-    .instance-table td a {
+    .instance-table tr td a {
         display: block;
         overflow: auto;
         white-space: nowrap;
