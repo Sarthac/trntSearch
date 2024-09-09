@@ -4,7 +4,7 @@ require_once "misc/header.php";
 ?>
 
 
-<table>
+<table class="instance-table">
     <tr>
         <th>Place</th>
         <td>Europe/Germany</td>
@@ -29,7 +29,7 @@ require_once "misc/header.php";
 <br><br><br><br>
 
 
-<table>
+<table class="instance-table">
     <tr>
         <th>Place</th>
         <td>NorthAmerica/US</td>
