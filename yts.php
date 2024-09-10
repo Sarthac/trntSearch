@@ -79,7 +79,8 @@ function print_yts_torrent_results($response)
             $img = $value["img"];
 
             echo "<div class=\"flex-row margin-bottom-100\">";
-            echo "<img src=\"$img\" alt=\"movie-image\">";
+            // echo "<img src=\"$img\" alt=\"movie-image\">";
+            echo "<img src=\"image_proxy.php?url=$img\">";
             echo "<div class=\"t-width\">";
             echo "<h2";
             if ($summary != null) {
