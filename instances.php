@@ -1,5 +1,5 @@
 <?php
-require_once "misc/header.php";
+include "misc/header.php";
 
 ?>
 
@@ -26,9 +26,6 @@ require_once "misc/header.php";
 
 </table>
 
-<br><br><br><br>
-
-
 <table class="instance-table">
     <tr>
         <th>Place</th>
@@ -44,3 +41,8 @@ require_once "misc/header.php";
         <td><a href="http://po2fyxzl3tadffsiotc3zvgrb4hgex7xpvlutah3um6ick6cneidkrid.onion">http://po2fyxzl3tadffsiotc3zvgrb4hgex7xpvlutah3um6ick6cneidkrid.onion</a></td>
     </tr>
 </table>
+
+<?php
+include "misc/footer.php";
+
+?>

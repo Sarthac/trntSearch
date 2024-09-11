@@ -29,6 +29,7 @@ require_once 'misc/header.php';
                 <option value="piratebay">piratebay</option>
                 <option value="1337x">1337x</option>
                 <option value="rarbg">rarbg</option>
+                <option value="rarbg">eztvx</option>
             </select>
             <select name="category">
                 <option value="All">All</option>

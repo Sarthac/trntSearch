@@ -30,6 +30,7 @@ $category = $_REQUEST["category"];
                 <option value="piratebay" <?php if ($site == "piratebay") echo "selected" ?>> piratebay</option>
                 <option value="1337x" <?php if ($site == "1337x") echo "selected" ?>> 1337x</option>
                 <option value="rarbg" <?php if ($site == "rarbg") echo "selected" ?>> rarbg</option>
+                <option value="eztvx" <?php if ($site == "eztvx") echo "selected" ?>> eztvx</option>
             </select>
 
 
@@ -89,6 +90,12 @@ switch ($site) {
         include "rarbg.php";
         $results = get_rarbg_results($query);
         print_rarbg_results($results);
+        break;
+
+    case "eztvx":
+        include "eztvx.php";
+        $results = get_eztvx_results($query);
+        print_eztvx_results($results);
         break;
 }
 
