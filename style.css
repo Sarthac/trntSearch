@@ -166,9 +166,7 @@ hr {
 .sub-search-container input:active,
 .search-container input:focus,
 .sub-search-container input:focus {
-    /* border: 1px solid rgb(136, 136, 136); */
     border: 1px solid var(--foreground-75);
-    /* box-shadow: 0 0 0 1px white; */
     outline: none;
 }
 
@@ -224,6 +222,42 @@ p {
     color: var(--foreground-75);
 }
 
+
+
+.title {
+    border: solid 1px var(--line);
+    margin: 0;
+    padding: 20px;
+    font-size: 20px;
+    color: var(--foreground-100);
+    background-color: var(--foreground-10);
+    border-radius: 10px 10px 0px 0px;
+
+}
+.title .yts-h2{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.movie-info span{
+    margin-right: 10px;
+    font-size:smaller;
+    color: var(--foreground-75);
+}
+
+.movie-info{
+    margin-top: 5px;
+}
+
+.movie-info img{
+    margin: 0px;
+    margin-right: 10px;
+    padding: 0;
+    
+}
+
 h2 {
     border: solid 1px var(--line);
     margin: 0;
@@ -231,8 +265,8 @@ h2 {
     font-size: 20px;
     color: var(--foreground-100);
     border-radius: 10px 10px 0px 0px;
-
 }
+
 
 
 a:hover {

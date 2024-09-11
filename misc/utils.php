@@ -1,5 +1,12 @@
 
 <?php
+function minutesToTime($minutes)
+{
+    $hours = floor($minutes / 60);
+    $minutes = $minutes % 60;
+    return sprintf($hours . "h" . " " . $minutes . "m");
+}
+
 function replace_chars($str)
 {
     return str_replace(array('-', '_'), ' ', $str);

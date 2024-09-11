@@ -17,6 +17,10 @@ function get_yts_results($response)
 
 
             $title = $item["title"];
+            $year = $item["year"];
+            $rating = $item["rating"];
+            $runtime = $item["runtime"];
+            $genres = $item["genres"];
             $summary = $item["summary"];
             $img = $item["medium_cover_image"];
 
@@ -24,6 +28,10 @@ function get_yts_results($response)
                 $results,
                 array(
                     "title" => $title,
+                    "year" => $year,
+                    "rating" => $rating,
+                    "runtime" => $runtime,
+                    "genres" => $genres,
                     "summary" => $summary,
                     "img" => $img
                 )
@@ -49,7 +57,6 @@ function get_yts_results($response)
                 );
             }
 
-
             array_push(
                 $results3,
                 array(
@@ -59,8 +66,6 @@ function get_yts_results($response)
             );
         }
     }
-
-
     return $results3;
 }
 
@@ -75,18 +80,34 @@ function print_yts_torrent_results($response)
 
         foreach ($result["basic"] as $value) {
             $title = $value["title"];
+            $year = $value["year"];
+            $rating = $value["rating"];
+            $runtime = $value["runtime"];
+            $runtime = minutesToTime($runtime);
             $summary = $value["summary"];
             $img = $value["img"];
 
             echo "<div class=\"flex-row margin-bottom-100\">";
-            // echo "<img src=\"$img\" alt=\"movie-image\">";
             echo "<img src=\"image_proxy.php?url=$img\">";
             echo "<div class=\"t-width\">";
-            echo "<h2";
+            echo "<div class=\"title\">";
+            echo "<h2 class=\"yts-h2\"";
             if ($summary != null) {
                 echo " class=\"yts-movie-name\"";
             }
             echo ">{$title}</h2>";
+            echo "<div class=\"movie-info\">";
+            echo "<img src=\"assets/star.png\" alt=\"rating \">";
+            echo "<span>$rating </span>";
+            echo "<span>$runtime </span>";
+            echo " <span>";
+            foreach ($value["genres"] as $genre) {
+                echo $genre . " ";
+            }
+            echo " </span>";
+            echo "<span>$year</span>";
+            echo "</div>";
+            echo "</div>";
 
             if ($summary != null) {
                 echo "<p> $summary </p>";
