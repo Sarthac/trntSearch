@@ -17,6 +17,7 @@
 
 html {
     scroll-behavior: smooth;
+
 }
 
 input {
@@ -24,8 +25,14 @@ input {
 }
 
 body {
-    width: 800px;
+    
+    margin: 0px;
+    padding: 0px;
+}
+
+body > * {
     margin: 20px;
+    width: 800px;
 }
 
 .input-wrap {
@@ -102,7 +109,7 @@ select {
     width: 200px;
     border-radius: 10px;
     border: 1px solid var(--foreground-25);
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 select option {
@@ -175,6 +182,10 @@ hr {
     text-decoration: none;
     color: var(--foreground-100);
 
+}
+
+.sub-search-container{
+    margin-top:20px;
 }
 
 .flex {
@@ -389,26 +400,50 @@ li {
     margin-bottom: 10px;
 }
 
-.less-margin {
-    margin-top: 0px;
-    margin-bottom: 10px;
-}
-
 li h3 {
     color: #6e6e71
 }
 
-
-.sticky-top {
+.footer{
     position: sticky;
-    top: 0;
+    margin: 0px;
+    bottom: 0px;
+    width: 100%;
+    border-top: solid 1px var(--foreground-25);
+    border-bottom: solid 1px var(--foreground-25);
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+    background-color: var(--background-color);
+
+}
+
+.footer > * {
+    padding: 20px;
+    border-left: solid 1px var(--foreground-25);
+    border-right: solid 1px var(--foreground-25);
+
+
+    
+}
+.footer div h3 a{
+    color: var(--foreground-100);
+    text-decoration: none;
+}
+
+.footer div > *{
+    margin: 0px 20px;
+}
+
+.footer h3{
+    margin: 0px;
 }
 
 @media only screen and (max-width: 650px) {
 
     body {
         width: 95%;
-        margin-left: 2.5%;
+        /* margin-left: 2.5%; */
     }
 
     .flex-row {
@@ -427,19 +462,19 @@ li h3 {
 @media only screen and (max-width: 1000px) {
 
     body {
+        margin: 0;
+        width: 100%;
+    }
+
+    body > *{
+
         width: 95%;
         margin-left: 2.5%;
-
     }
 
     p {
         font-size: 16px;
     }
-
-    .main {
-        width: 95%;
-    }
-
 
     html {
         font-size: 14px;
@@ -458,18 +493,14 @@ li h3 {
 
     }
 
-    ol li {
-        font-size: 16px;
-    }
-
     .img-css {
         height: auto;
         width: 280px;
     }
 
-    .search-container {
+    /* .search-container {
         width: 95%;
-    }
+    } */
 
     .search-container h1 {
         font-size: 40px;
@@ -521,5 +552,28 @@ li h3 {
         width: 16px;
     
     }
+
+    .search-container{
+        width: 95%;
+        margin: 0;
+    }
+    .footer > * {
+        padding: 10px;
+        border-left: solid 1px var(--foreground-25);
+        border-right: solid 1px var(--foreground-25);
+
+    }
+
+    .footer {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .footer div > *{
+        margin: 0px 10px;
+        font-size:15px;
+    }
+
+    
 
 }

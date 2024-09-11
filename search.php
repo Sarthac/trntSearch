@@ -16,7 +16,7 @@ $category = $_REQUEST["category"];
 <body>
 
     <form class="sub-search-container" action="search.php" method="get" autocomplete="off">
-        <h1 class="no-decoration mobile-logo"><a href="./">trntSearch</a></h1>
+        <!-- <h1 class="no-decoration mobile-logo"><a href="./">trntSearch</a></h1> -->
         <div class="input-wrap">
             <input class="code" type="text" name="query" <?php echo "value=\"$query\""  ?>>
             <button class="submit-button" type="submit">
@@ -91,5 +91,10 @@ switch ($site) {
         print_rarbg_results($results);
         break;
 }
+
+?>
+
+<?php
+include_once "misc/footer.php";
 
 ?>

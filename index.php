@@ -13,7 +13,7 @@ require_once 'misc/header.php';
 <body>
 
     <form class=" search-container" action="search.php" method="get" autocomplete="off">
-        <h1 class="no-decoration">trntSearch</h1>
+        <!-- <h1 class="no-decoration">trntSearch</h1> -->
         <div class="input-wrap">
             <input class="code" type="text" name="query" placeholder="Search" autofocus>
             <button class="submit-button" type="submit">
@@ -38,13 +38,13 @@ require_once 'misc/header.php';
             </select>
         </div>
 
-        <div class="margin-top-50 text-align-ceter">
-            <a class="text-decoration-solid" href="./instances.php">trntSearch can be accessible on tor and i2p</a>
-        </div>
-
-
-
     </form>
 </body>
 
 </html>
+
+
+<?php
+include_once "misc/footer.php";
+
+?>
