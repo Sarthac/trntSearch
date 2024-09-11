@@ -420,12 +420,19 @@ li h3 {
 
 .footer > * {
     padding: 20px;
-    border-left: solid 1px var(--foreground-25);
-    border-right: solid 1px var(--foreground-25);
-
-
     
+     
 }
+
+.footer div:first-child {
+    border-right: solid 1px var(--foreground-25);
+}
+
+.footer div:last-of-type{
+    border-left: solid 1px var(--foreground-25);
+
+}
+
 .footer div h3 a{
     color: var(--foreground-100);
     text-decoration: none;
@@ -559,9 +566,6 @@ li h3 {
     }
     .footer > * {
         padding: 10px;
-        border-left: solid 1px var(--foreground-25);
-        border-right: solid 1px var(--foreground-25);
-
     }
 
     .footer {
