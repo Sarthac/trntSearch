@@ -86,7 +86,9 @@ switch ($site) {
 
     case "eztvx":
         include "eztvx.php";
-        $results = get_eztvx_results($query);
+        include "omdbapi.php";
+        $omdb_id = get_omdbapi_id($query);
+        $results = get_eztvx_results($omdb_id);
         print_eztvx_results($results, $query);
         break;
 }
