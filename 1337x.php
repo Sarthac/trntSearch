@@ -2,10 +2,6 @@
 
 include "misc/utils.php";
 $config = require "config.php";
-// require "get_magnet_1337x.php";
-
-
-
 $_1337x_url = "https://1337x.to/search/$query/1/";
 
 
@@ -44,47 +40,46 @@ function get_1337x_results($response)
     return $results;
 }
 
-function count_results($response)
+function print_1337x_results($results, $query)
 {
-    echo "<span class=\"found-results\"> Found " . count(get_1337x_results($response)) . " results </span>";
-}
+    $total = count($results);
+    if ($total != 0) {
+        print_total_results($total);
+        foreach ($results as $result) {
+            $name = $result["name"];
+            $magnet = $result["magnet"];
+            $size = $result["size"];
+            $seeders = $result["seeders"];
+            $leechers = $result["leechers"];
+            $source = $result["source"];
+
+            echo "<div class=\"margin-bottom-50\">";
+            echo "<h2>$name</h2>";
+            echo "<table>";
+            echo "<tr>";
+            echo "<th> Seeders </th>";
+            echo "<th> Leechers </th>";
+            echo "<th> Size </th>";
+            echo "<th> Magnet </th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<td> $seeders </td>";
+            echo "<td> $leechers </td>";
+            echo "<td> $size </td>";
+            echo "<td>";
+            echo "<a href=\"$magnet\">";
+            echo "magnet";
+            echo "</a>";
+            echo "</td>";
+            echo "</tr>";
+            echo "</table>";
 
 
 
-function print_1337x_results($results)
-{
-    foreach ($results as $result) {
-        $name = $result["name"];
-        $magnet = $result["magnet"];
-        $size = $result["size"];
-        $seeders = $result["seeders"];
-        $leechers = $result["leechers"];
-        $source = $result["source"];
-
-        echo "<div class=\"margin-bottom-50\">";
-        echo "<h2>$name</h2>";
-        echo "<table>";
-        echo "<tr>";
-        echo "<th> Seeders </th>";
-        echo "<th> Leechers </th>";
-        echo "<th> Size </th>";
-        echo "<th> Magnet </th>";
-        echo "</tr>";
-
-        echo "<tr>";
-        echo "<td> $seeders </td>";
-        echo "<td> $leechers </td>";
-        echo "<td> $size </td>";
-        echo "<td>";
-        echo "<a href=\"$magnet\">";
-        echo "magnet";
-        echo "</a>";
-        echo "</td>";
-        echo "</tr>";
-        echo "</table>";
-
-
-
-        echo "</div>";
+            echo "</div>";
+        }
+    } else {
+        print_no_result_text($query);
     }
 }

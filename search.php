@@ -55,47 +55,39 @@ switch ($site) {
 
     case "yts":
         include "yts.php";
-        $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query";
-        $response = file_get_contents($url);
-        $results = get_yts_results($response);
-        print_yts_torrent_results($response);
+        $results = get_yts_results($query);
+        print_yts_torrent_results($results, $query);
         break;
 
     case "academic_torrents":
         include "academic_torrents.php";
         $results = search_by_name($query, $category);
-        print_academic_torrents_results($results);
-        // search_by_name($query, $category);
-
+        print_academic_torrents_results($results, $query);
         break;
 
     case "piratebay":
         include "piratebay.php";
-        $url = "https://apibay.org/q.php?q=$query";
-        $response = file_get_contents($url);
-        $results = get_thepiratebay_results($response);
-        count_results($response);
-        print_piratebay_results($results);
+        $results = get_thepiratebay_results($query);
+        print_piratebay_results($results, $query);
         break;
 
     case "1337x":
         include "1337x.php";
         $response = file_get_contents($_1337x_url);
         $results = get_1337x_results($response);
-        count_results($response);
-        print_1337x_results($results);
+        print_1337x_results($results, $query);
         break;
 
     case "rarbg":
         include "rarbg.php";
         $results = get_rarbg_results($query);
-        print_rarbg_results($results);
+        print_rarbg_results($results, $query);
         break;
 
     case "eztvx":
         include "eztvx.php";
         $results = get_eztvx_results($query);
-        print_eztvx_results($results);
+        print_eztvx_results($results, $query);
         break;
 }
 

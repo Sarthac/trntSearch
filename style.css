@@ -39,6 +39,10 @@ body > * {
     position: relative;
 }
 
+.red-color {
+    color: red;
+}
+
 
 .input-wrap input[type="text"] {
     box-sizing: border-box;
@@ -405,7 +409,7 @@ li h3 {
 }
 
 .footer{
-    position: sticky;
+    position: fixed;
     margin: 0px;
     bottom: 0px;
     width: 100%;

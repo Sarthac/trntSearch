@@ -69,49 +69,54 @@ function get_rarbg_results($query)
     return $results;
 }
 
-function print_rarbg_results($results)
+function print_rarbg_results($results, $query)
 {
-    echo "<span class=\"found-results\"> Found " . count($results) . " results </span>";
+
+    $total = count($results);
+    if ($total != 0) {
+        echo "<span class=\"found-results\"> Found " . count($results) . " results </span>";
+
+        foreach ($results as $result) {
+            $hash = $result['hash'];
+            $title = $result['title'];
+            $date = $result['date'];
+            $category = $result['category'];
+            $size = human_filesize($result['size']);
+            $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $hash . "&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce";
 
 
-    foreach ($results as $result) {
-        $hash = $result['hash'];
-        $title = $result['title'];
-        $date = $result['date'];
-        $category = $result['category'];
-        $size = human_filesize($result['size']);
-        $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $hash . "&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce";
+            echo "<div class=\"margin-bottom-50\">";
+            echo "<h2>$title</h2>";
 
 
-        echo "<div class=\"margin-bottom-50\">";
-        echo "<h2>$title</h2>";
+            echo "<table>";
+            echo "<tr>";
+            echo "<th> Category </th>";
 
 
-        echo "<table>";
-        echo "<tr>";
-        echo "<th> Category </th>";
+            echo "<th> Date </th>";
+            echo "<th> Size </th>";
+            echo "<th> Magnet </th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<td> $category </td>";
+            echo "<td> $date </td>";
+
+            echo "<td> $size </td>";
+            echo "<td>";
+            echo "<a href=\"$magnet\">";
+            echo "magnet";
+            echo "</a>";
+            echo "</td>";
 
 
-        echo "<th> Date </th>";
-        echo "<th> Size </th>";
-        echo "<th> Magnet </th>";
-        echo "</tr>";
-
-        echo "<tr>";
-        echo "<td> $category </td>";
-        echo "<td> $date </td>";
-
-        echo "<td> $size </td>";
-        echo "<td>";
-        echo "<a href=\"$magnet\">";
-        echo "magnet";
-        echo "</a>";
-        echo "</td>";
-
-
-        echo "</tr>";
-        echo "</table>";
-        echo "</div>";
+            echo "</tr>";
+            echo "</table>";
+            echo "</div>";
+        }
+    } else {
+        print_no_result_text($query);
     }
 }
 

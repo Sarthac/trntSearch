@@ -1,13 +1,15 @@
 <?php
-$thepiratebay_url = "https://apibay.org/q.php?q=$query";
 $config = require "config.php";
 require "misc/utils.php";
 
-function get_thepiratebay_results($response)
+function get_thepiratebay_results($query)
 {
     global $config;
-    $results = array();
+    $url = "https://apibay.org/q.php?q=$query";
+    $response = file_get_contents($url);
     $json_response = json_decode($response, true);
+
+    $results = array();
 
     if (empty($json_response)) {
         return $results;
@@ -21,7 +23,6 @@ function get_thepiratebay_results($response)
         $seeders = (int) $response["seeders"];
         $leechers = (int) $response["leechers"];
         $added = $response["added"];
-        $added = date("Y-m-d H:i:s", $added);
 
         $magnet = "magnet:?xt=urn:btih:$hash&dn=$name" . $config->bittorent_trackers;
 
@@ -46,48 +47,49 @@ function get_thepiratebay_results($response)
     return $results;
 }
 
-function count_results($response)
+function print_piratebay_results($results, $query)
 {
-    echo "<div class=\"found-results\"> Found " . count(get_thepiratebay_results($response)) . " results </div>";
-}
+    $total = count($results);
+    if ($total != 0) {
+        print_total_results($total);
 
+        foreach ($results as $result) {
+            $name = $result["name"];
+            $magnet = $result["magnet"];
+            $size = $result["size"];
+            $seeders = $result["seeders"];
+            $leechers = $result["leechers"];
+            $source = $result["source"];
+            $added = $result["added"];
+            $added = date("Y-m-d H:i:s", $added);
 
+            echo "<div class=\"margin-bottom-50\">";
+            echo "<h2>$name</h2>";
 
-function print_piratebay_results($results)
-{
-    foreach ($results as $result) {
-        $name = $result["name"];
-        $magnet = $result["magnet"];
-        $size = $result["size"];
-        $seeders = $result["seeders"];
-        $leechers = $result["leechers"];
-        $source = $result["source"];
-        $added = $result["added"];
+            echo "<table>";
+            echo "<tr>";
+            echo "<th> Seeders </th>";
+            echo "<th> Leechers </th>";
+            echo "<th> Size </th>";
+            echo "<th> Added </th>";
+            echo "<th> magnet </th>";
+            echo "</tr>";
 
-        echo "<div class=\"margin-bottom-50\">";
-        echo "<h2>$name</h2>";
-
-        echo "<table>";
-        echo "<tr>";
-        echo "<th> Seeders </th>";
-        echo "<th> Leechers </th>";
-        echo "<th> Size </th>";
-        echo "<th> Added </th>";
-        echo "<th> magnet </th>";
-        echo "</tr>";
-
-        echo "<tr>";
-        echo "<td> $seeders </td>";
-        echo "<td> $leechers </td>";
-        echo "<td> $size </td>";
-        echo "<td> $added </td>";
-        echo "<td>";
-        echo "<a href=\"$magnet\">";
-        echo "magnet";
-        echo "</a>";
-        echo "</td>";
-        echo "</tr>";
-        echo "</table>";
-        echo "</div>";
+            echo "<tr>";
+            echo "<td> $seeders </td>";
+            echo "<td> $leechers </td>";
+            echo "<td> $size </td>";
+            echo "<td> $added </td>";
+            echo "<td>";
+            echo "<a href=\"$magnet\">";
+            echo "magnet";
+            echo "</a>";
+            echo "</td>";
+            echo "</tr>";
+            echo "</table>";
+            echo "</div>";
+        }
+    } else {
+        print_no_result_text($query);
     }
 }

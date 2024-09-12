@@ -58,50 +58,54 @@ function get_eztvx_results($query)
 }
 
 
-function print_eztvx_results($results)
+function print_eztvx_results($results, $query)
 {
-    echo "<span class=\"found-results\"> Found " . count($results) . " results </span>";
+    $total = count($results);
+
+    if ($total != 0) {
+        print_total_results($total);
+        foreach ($results as $result) {
+            $title = $result['title'];
+            $seeds = $result['seeds'];
+            $magnet = $result['magnet'];
+            $date = $result['date'];
+            $date = date("Y-m-d H:i:s", $date);
+            $size = human_filesize($result['size']);
+            $img = $result['img'];
+            $img = "https:" . $img;
+
+            echo "<div class=\"margin-bottom-50\">";
+            echo "<img src=\"image_proxy.php?url=$img\">";
+            echo "<h2>$title</h2>";
+
+            echo "<table>";
+            echo "<tr>";
+            echo "<th> Seeds </th>";
 
 
-    foreach ($results as $result) {
-        $title = $result['title'];
-        $seeds = $result['seeds'];
-        $magnet = $result['magnet'];
-        $date = $result['date'];
-        $date = date("Y-m-d H:i:s", $date);
-        $size = human_filesize($result['size']);
-        $img = $result['img'];
-        $img = "https:" . $img;
+            echo "<th> Date </th>";
+            echo "<th> Size </th>";
+            echo "<th> Magnet </th>";
+            echo "</tr>";
 
-        echo "<div class=\"margin-bottom-50\">";
-        echo "<img src=\"image_proxy.php?url=$img\">";
-        echo "<h2>$title</h2>";
+            echo "<tr>";
+            echo "<td> $seeds </td>";
+            echo "<td> $date </td>";
 
-        echo "<table>";
-        echo "<tr>";
-        echo "<th> Seeds </th>";
+            echo "<td> $size </td>";
+            echo "<td>";
+            echo "<a href=\"$magnet\">";
+            echo "magnet";
+            echo "</a>";
+            echo "</td>";
 
 
-        echo "<th> Date </th>";
-        echo "<th> Size </th>";
-        echo "<th> Magnet </th>";
-        echo "</tr>";
-
-        echo "<tr>";
-        echo "<td> $seeds </td>";
-        echo "<td> $date </td>";
-
-        echo "<td> $size </td>";
-        echo "<td>";
-        echo "<a href=\"$magnet\">";
-        echo "magnet";
-        echo "</a>";
-        echo "</td>";
-
-
-        echo "</tr>";
-        echo "</table>";
-        echo "</div>";
+            echo "</tr>";
+            echo "</table>";
+            echo "</div>";
+        }
+    } else {
+        print_no_result_text($query);
     }
 }
 

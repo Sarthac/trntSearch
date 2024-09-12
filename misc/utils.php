@@ -1,5 +1,16 @@
 
 <?php
+
+function print_total_results($total)
+{
+    echo  "<span style=\"color: red;\" class=\"found-results\"> Found " . $total . " results </span>";
+}
+
+
+function print_no_result_text($query)
+{
+    echo " <span> results not found on '$query', try different keyword </span> ";
+}
 function minutesToTime($minutes)
 {
     $hours = floor($minutes / 60);

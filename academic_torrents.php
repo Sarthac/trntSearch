@@ -161,39 +161,44 @@ function search_by_name($query, $category)
 
 
 
-function print_academic_torrents_results($results)
+function print_academic_torrents_results($results, $query)
 {
-    echo "<div class=\"found-results\"> Found " . count($results) . " results </div>";
+    $total = count($results);
+    if ($total != 0) {
+        print_total_results($total);
 
-    foreach ($results as $result) {
-        $title = htmlspecialchars($result["title"]);
-        $category = $result["category"];
-        $description = htmlspecialchars($result["description"]);
-        $magnet = $result["magnet"];
-        $size = $result["size"];
+        foreach ($results as $result) {
+            $title = htmlspecialchars($result["title"]);
+            $category = $result["category"];
+            $description = htmlspecialchars($result["description"]);
+            $magnet = $result["magnet"];
+            $size = $result["size"];
 
-        echo "<div class = \"margin-bottom-50\">";
-        echo "<h2>$title</h2>";
-        if ($result["description"] != null) {
-            echo "<p> $description </p>";
+            echo "<div class = \"margin-bottom-50\">";
+            echo "<h2>$title</h2>";
+            if ($result["description"] != null) {
+                echo "<p> $description </p>";
+            }
+            echo "<table>";
+            echo "<tr>";
+            echo "<th> Category </th>";
+            echo "<th> Size </th>";
+            echo "<th> Magnet </th>";
+            echo "</tr>";
+
+            echo "<tr>";
+            echo "<td> $category </td>";
+            echo "<td> $size </td>";
+            echo "<td>";
+            echo "<a href=\"$magnet\">";
+            echo "magnet";
+            echo "</a>";
+            echo "</td>";
+            echo "</tr>";
+            echo "</table>";
+            echo "</div>";
         }
-        echo "<table>";
-        echo "<tr>";
-        echo "<th> Category </th>";
-        echo "<th> Size </th>";
-        echo "<th> Magnet </th>";
-        echo "</tr>";
-
-        echo "<tr>";
-        echo "<td> $category </td>";
-        echo "<td> $size </td>";
-        echo "<td>";
-        echo "<a href=\"$magnet\">";
-        echo "magnet";
-        echo "</a>";
-        echo "</td>";
-        echo "</tr>";
-        echo "</table>";
-        echo "</div>";
+    } else {
+        print_no_result_text($query);
     }
 }
