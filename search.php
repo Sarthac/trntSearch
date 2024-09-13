@@ -35,10 +35,12 @@ $category = $_REQUEST["category"];
 
 
             <select class="second-select" name="category">
-                <option value="All" <?php if ($category == "All") echo "selected" ?>>All</option>
-                <option value="Dataset" <?php if ($category == "Dataset") echo "selected" ?>>Dataset</option>
-                <option value="Course" <?php if ($category == "Course") echo "selected" ?>>Course</option>
-                <option value="Paper" <?php if ($category == "Paper") echo "selected" ?>>Paper</option>
+                <optgroup label="academic-torrents">
+                    <option value="All" <?php if ($category == "All") echo "selected" ?>>All</option>
+                    <option value="Dataset" <?php if ($category == "Dataset") echo "selected" ?>>Dataset</option>
+                    <option value="Course" <?php if ($category == "Course") echo "selected" ?>>Course</option>
+                    <option value="Paper" <?php if ($category == "Paper") echo "selected" ?>>Paper</option>
+                </optgroup>
             </select>
 
         </div>

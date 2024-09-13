@@ -1,6 +1,5 @@
 <?php
 include "misc/utils.php";
-include "misc/header.php";
 $config = include "config.php";
 
 function get_yts_results($query)
@@ -65,8 +64,8 @@ function get_yts_results($query)
                 array_push(
                     $results3,
                     array(
-                        "basic" => $results,
-                        "more" => $results2
+                        "data" => $results,
+                        "torrents" => $results2
                     )
                 );
             }
@@ -87,7 +86,7 @@ function print_yts_torrent_results($results, $query)
         print_total_results($total);
         foreach ($results as $result) {
 
-            foreach ($result["basic"] as $value) {
+            foreach ($result["data"] as $value) {
                 $title = $value["title"];
                 $year = $value["year"];
                 $rating = $value["rating"];
@@ -119,7 +118,7 @@ function print_yts_torrent_results($results, $query)
                 echo "</div>";
 
                 if ($summary != null) {
-                    echo "<p> $summary </p>";
+                    echo "<p class=\"para\"> $summary </p>";
                 }
             }
             echo "<div class=\"flex-column-space-between\">";
@@ -127,7 +126,7 @@ function print_yts_torrent_results($results, $query)
             echo "<th> Type </th>";
             echo "<th> Seeders</th>";
             echo "<th> Magnet</th>";
-            foreach ($result["more"] as $key) {
+            foreach ($result["torrents"] as $key) {
 
                 $quality = $key["quality"];
                 $type = $key["type"];

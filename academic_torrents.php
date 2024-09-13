@@ -1,5 +1,4 @@
 <?php
-require_once "./misc/header.php";
 require "misc/utils.php";
 $config = require "config.php";
 $xml = simplexml_load_file('https://academictorrents.com/database.xml');

@@ -1,20 +1,5 @@
-<!-- EZTV API is in beta mode and does not require an API Login or API key. Please send your feedback via e-mail at novaking@eztv.ch
-
-Request: https://eztvx.to/api/get-torrents
-Parameters: limit (results per page, between 1 and 100); page (current page of results, between 1 and 100)
-
-Example request: https://eztvx.to/api/get-torrents?limit=10&page=1
-
-Show lookup by IMDB ID
-
-If you already know a show's IMDB ID, you can use this endpoint to find only the torrents for this exact show on EZTV. If the given ID can be matched, all its EZTV torrents will be returned.
-
-Example request: https://eztvx.to/api/get-torrents?imdb_id=6048596
-
-Results are returned in JSON format. -->
 
 <?php
-require "misc/header.php";
 require "misc/utils.php";
 ?>
 

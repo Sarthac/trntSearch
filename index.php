@@ -32,10 +32,12 @@ require_once 'misc/header.php';
                 <option value="rarbg">eztvx</option>
             </select>
             <select name="category">
-                <option value="All">All</option>
-                <option value="Dataset">Dataset</option>
-                <option value="Course">Course</option>
-                <option value="Paper">Paper</option>
+                <optgroup label="academic-torrents">
+                    <option value="All">All</option>
+                    <option value="Dataset">Dataset</option>
+                    <option value="Course">Course</option>
+                    <option value="Paper">Paper</option>
+                </optgroup>
             </select>
         </div>
 

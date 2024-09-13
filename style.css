@@ -228,15 +228,20 @@ hr {
 }
 
 p {
+    font-size: 18px;
+    color: var(--foreground-100);
+}
+
+
+.para {
     border: solid 1px var(--line);
     border-top: 0px;
     margin: 0;
     padding: 20px;
     font-size: 18px;
-    color: white;
     color: var(--foreground-75);
-}
 
+}
 
 
 .title {
@@ -414,7 +419,6 @@ li h3 {
     bottom: 0px;
     width: 100%;
     border-top: solid 1px var(--foreground-25);
-    border-bottom: solid 1px var(--foreground-25);
     display: flex;
     justify-content:space-between;
     text-align: center;

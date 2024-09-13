@@ -53,14 +53,22 @@ function get_rarbg_results($query)
 
     $counter = 0;
     while ($counter < 50 && $row = $db_results->fetchArray(SQLITE3_ASSOC)) {
+        $hash = $row["hash"];
+        $title = replace_dot($row["title"]);
+        $date = $row["dt"];
+        $category = $row["cat"];
+        $size = $row["size"];
+        $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . "&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce";
+
         array_push(
             $results,
             array(
-                "hash" => $row["hash"],
-                "title" => replace_dot($row["title"]),
-                "date" => $row["dt"],
-                "category" => $row["cat"],
-                "size" => $row["size"]
+                "hash" => $hash,
+                "title" => $title,
+                "date" => $date,
+                "category" => $category,
+                "size" => $size,
+                "magnet" => $magnet
             )
         );
 
@@ -74,7 +82,7 @@ function print_rarbg_results($results, $query)
 
     $total = count($results);
     if ($total != 0) {
-        echo "<span class=\"found-results\"> Found " . count($results) . " results </span>";
+        print_total_results($total);
 
         foreach ($results as $result) {
             $hash = $result['hash'];
@@ -82,7 +90,7 @@ function print_rarbg_results($results, $query)
             $date = $result['date'];
             $category = $result['category'];
             $size = human_filesize($result['size']);
-            $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $hash . "&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce";
+            $magnet = $result['magnet'];
 
 
             echo "<div class=\"margin-bottom-50\">";
