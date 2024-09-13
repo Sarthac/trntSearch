@@ -582,7 +582,8 @@ li h3 {
     }
 
     .footer div > *{
-        margin: 0px 10px;
+        margin: 0px;
+        margin-left: 10px;
         font-size:15px;
     }
 
