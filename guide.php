@@ -13,9 +13,9 @@ include "misc/header.php";
 </style>
 
 
-<h3>Those who are unfamiliar with torrent and getting a zero results on trntSearch here is guide for you</h3>
+<p>Those who are unfamiliar with torrent and getting zero results on trntSearch, here is a guide for you.</p>
 
-<p>in trntSearch you find multiple option in drop down menu which are yts, academic-torrent, 1337x, piratebay, rarbg and eztvx.These are sites which you get results from them. trntSearch work as a proxy that aims to give results without ads, trackers, give you declutter experience. if you search tv series in yts it will give you 0 results because yts only provide movies.
+<p>In trntSearch you find multiple option in drop down menu which are yts, academic-torrent, 1337x, piratebay, rarbg and eztvx.These are sites which you get results from them. trntSearch work as a proxy that aims to give results without ads, trackers, give you declutter experience. if you search tv series in yts it will give you 0 results because yts only provide movies.
     here are some info on each sites.
 </p>
 

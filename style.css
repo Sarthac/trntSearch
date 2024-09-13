@@ -586,6 +586,12 @@ li h3 {
         font-size:15px;
     }
 
+    .footer div:last-of-type{
+        border-left: 0px;
+
+    }
+
+
     
 
 }
