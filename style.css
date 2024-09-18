@@ -72,6 +72,7 @@ body > * {
     height: auto;
     padding: 15px 20px;
     border-radius: 0px 15px 15px 0px;
+    border: 0;
 }
 
 .search-container h1 {
@@ -202,29 +203,29 @@ hr {
 }
 
 .flex-row {
-    display: flex;
-    flex-direction: row;
-
-    /* justify-content: space-between; */
-
+    display: column;
 
 }
 
+img {
+    border-radius: 10px;
+}
+
+
 .flex-row img {
     height: 100%;
+    margin-right: 20px;
+    margin-bottom: 20px;
 
-    padding: 0px 20px 20px 0px;
-    margin: 0;
+}
 
+.flex-row {
+    display: flex;
 }
 
 .flex-column {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    gap: 20px;
-
-
 }
 
 p {
@@ -240,6 +241,7 @@ p {
     padding: 20px;
     font-size: 18px;
     color: var(--foreground-75);
+    overflow: hidden;
 
 }
 
@@ -271,10 +273,12 @@ p {
     margin-top: 5px;
 }
 
+
 .movie-info img{
     margin: 0px;
     margin-right: 10px;
     padding: 0;
+
     
 }
 
@@ -375,6 +379,15 @@ h1 {
     margin-bottom: 50px;
 }
 
+div.margin-bottom-50:last-of-type { 
+    margin-bottom: 100px;
+}
+
+.margin-bottom-50:nth-last-child() {
+  margin-bottom: 100px;
+  padding-bottom: 100px;    
+}
+
 .margin-top-50 {
     margin-top: 50px;
 }
@@ -382,6 +395,11 @@ h1 {
 .margin-bottom-100 {
     margin-bottom: 100px;
 }
+
+.margin-bottom-120 {
+    margin-bottom: 120px;
+}
+
 
 
 
@@ -412,6 +430,14 @@ li {
 li h3 {
     color: #6e6e71
 }
+
+.omdb-results{
+    position: absolute;
+    left: 850px;
+    width: auto;
+
+}
+
 
 .footer{
     position: fixed;
@@ -525,8 +551,10 @@ li h3 {
         margin-top: 10px;
     }
 
-    .flex {
-        display: block;
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
     }
 
     .position-sticky {
@@ -595,6 +623,18 @@ li h3 {
     .footer div h3 {
         margin: 0px 10px;
     }
+
+    .flex-row{
+        flex-direction: column;
+    }
+
+
+    .omdb-results{
+        position: relative;
+        left: 0;
+
+    }
+
 
 
     

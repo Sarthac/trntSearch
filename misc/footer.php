@@ -1,8 +1,3 @@
-<?php
-include_once "misc/header.php";
-
-?>
-
 <div class="footer">
     <div>
         <h3><a href="./">trntSearch</a></h3>
@@ -16,9 +11,3 @@ include_once "misc/header.php";
     </div>
 
 </div>
-
-
-<?php
-include_once "misc/footer.php";
-
-?>

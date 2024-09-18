@@ -36,7 +36,7 @@ switch ($site) {
     case "eztvx":
         include "eztvx.php";
         include "omdbapi.php";
-        $omdb_id = get_omdbapi_id($query);
+        $omdb_id = get_imdb_id($query);
         $results = get_eztvx_results($omdb_id);
         break;
 

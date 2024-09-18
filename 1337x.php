@@ -79,6 +79,7 @@ function print_1337x_results($results, $query)
 
             echo "</div>";
         }
+        echo "<div class=\"margin-bottom-120\"></div>";
     } else {
         print_no_result_text($query);
     }

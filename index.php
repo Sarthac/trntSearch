@@ -2,10 +2,6 @@
 require_once 'misc/header.php';
 ?>
 
-
-
-
-
 <head>
     <title>trntSearch</title>
 </head>
@@ -45,7 +41,6 @@ require_once 'misc/header.php';
 </body>
 
 </html>
-
 
 <?php
 include_once "misc/footer.php";
