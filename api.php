@@ -1,7 +1,7 @@
 <?php
 $query = htmlspecialchars($_REQUEST["query"]);
 $site = $_REQUEST["site"];
-// $category = $_REQUEST["category"];
+$category = $_REQUEST["category"];
 
 $results = array();
 
