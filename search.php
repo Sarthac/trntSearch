@@ -24,25 +24,29 @@ $category = $_REQUEST["category"];
             </button>
         </div>
         <div>
-            <select name="site">
-                <option value="yts" <?php if ($site == "yts") echo "selected" ?>>yts</option>
-                <option value="academic_torrents" <?php if ($site == "academic_torrents") echo "selected" ?>> academic_torrents</option>
-                <option value="piratebay" <?php if ($site == "piratebay") echo "selected" ?>> piratebay</option>
-                <option value="1337x" <?php if ($site == "1337x") echo "selected" ?>> 1337x</option>
-                <option value="rarbg" <?php if ($site == "rarbg") echo "selected" ?>> rarbg</option>
-                <option value="eztvx" <?php if ($site == "eztvx") echo "selected" ?>> eztvx</option>
-            </select>
+            <div class="inline-block margin-top-25">
+                <label class="label block" for="provider">Provider</label>
+                <select name="site">
+                    <option value="yts" <?php if ($site == "yts") echo "selected" ?>>yts</option>
+                    <option value="academic_torrents" <?php if ($site == "academic_torrents") echo "selected" ?>> academic_torrents</option>
+                    <option value="piratebay" <?php if ($site == "piratebay") echo "selected" ?>> piratebay</option>
+                    <option value="1337x" <?php if ($site == "1337x") echo "selected" ?>> 1337x</option>
+                    <option value="rarbg" <?php if ($site == "rarbg") echo "selected" ?>> rarbg</option>
+                    <option value="eztvx" <?php if ($site == "eztvx") echo "selected" ?>> eztvx</option>
+                </select>
+            </div>
 
-
-            <select class="second-select" name="category">
-                <optgroup label="academic-torrents">
-                    <option value="All" <?php if ($category == "All") echo "selected" ?>>All</option>
-                    <option value="Dataset" <?php if ($category == "Dataset") echo "selected" ?>>Dataset</option>
-                    <option value="Course" <?php if ($category == "Course") echo "selected" ?>>Course</option>
-                    <option value="Paper" <?php if ($category == "Paper") echo "selected" ?>>Paper</option>
-                </optgroup>
-            </select>
-
+            <div class="inline-block margin-top-25">
+                <label class="label block" for="category">Category</label>
+                <select class="second-select" name="category">
+                    <optgroup label="academic-torrents">
+                        <option value="All" <?php if ($category == "All") echo "selected" ?>>All</option>
+                        <option value="Dataset" <?php if ($category == "Dataset") echo "selected" ?>>Dataset</option>
+                        <option value="Course" <?php if ($category == "Course") echo "selected" ?>>Course</option>
+                        <option value="Paper" <?php if ($category == "Paper") echo "selected" ?>>Paper</option>
+                    </optgroup>
+                </select>
+            </div>
         </div>
     </form>
 
@@ -56,44 +60,49 @@ $category = $_REQUEST["category"];
 switch ($site) {
 
     case "yts":
-        include "yts.php";
+        include "provider/yts.php";
         $results = get_yts_results($query);
         print_yts_torrent_results($results, $query);
         break;
 
     case "academic_torrents":
-        include "academic_torrents.php";
+        include "provider/academic_torrents.php";
         $results = search_by_name($query, $category);
         print_academic_torrents_results($results, $query);
         break;
 
     case "piratebay":
-        include "piratebay.php";
+        include "provider/piratebay.php";
         $results = get_thepiratebay_results($query);
         print_piratebay_results($results, $query);
         break;
 
     case "1337x":
-        include "1337x.php";
+        include "provider/1337x.php";
         $response = file_get_contents($_1337x_url);
         $results = get_1337x_results($response);
         print_1337x_results($results, $query);
         break;
 
     case "rarbg":
-        include "rarbg.php";
+        include "provider/rarbg.php";
         $results = get_rarbg_results($query);
         print_rarbg_results($results, $query);
         break;
 
     case "eztvx":
-        include "eztvx.php";
+        include "provider/eztvx.php";
         include "omdbapi.php";
         $omdb_results = get_omdbapi_details($query);
         $imdb_id = get_imdb_id($omdb_results);
-        $results = get_eztvx_results($imdb_id);
-        print_omdbapi_details($omdb_results);
-        print_eztvx_results($results, $query);
+        if ($imdb_id != "no tv series exist") {
+            $results = get_eztvx_results($imdb_id);
+            print_omdbapi_details($omdb_results);
+            print_eztvx_results($results, $query);
+        } else {
+            echo " <span style=\"color: red;\"> $imdb_id on '$query', try different keyword </span> ";
+        }
+
         break;
 }
 

@@ -60,7 +60,7 @@ function print_eztvx_results($results, $query)
             $img = "https:" . $img;
 
             echo "<div class=\"margin-bottom-50\">";
-            echo "<img src=\"image_proxy.php?url=$img\" alt=\"image\">";
+            echo "<img src=\"proxy/image_proxy.php?url=$img\" alt=\"image\">";
             echo "<h2>$title</h2>";
 
             echo "<table>";

@@ -19,22 +19,28 @@ require_once 'misc/header.php';
         </div>
 
         <div>
-            <select name="site">
-                <option value="yts">yts</option>
-                <option value="academic_torrents">academic_torrents</option>
-                <option value="piratebay">piratebay</option>
-                <option value="1337x">1337x</option>
-                <option value="rarbg">rarbg</option>
-                <option value="rarbg">eztvx</option>
-            </select>
-            <select name="category">
-                <optgroup label="academic-torrents">
-                    <option value="All">All</option>
-                    <option value="Dataset">Dataset</option>
-                    <option value="Course">Course</option>
-                    <option value="Paper">Paper</option>
-                </optgroup>
-            </select>
+            <div class="inline-block margin-top-25">
+                <label class="label block " for="provider">Provider</label>
+                <select name="site">
+                    <option value="yts">yts</option>
+                    <option value="academic_torrents">academic_torrents</option>
+                    <option value="piratebay">piratebay</option>
+                    <option value="1337x">1337x</option>
+                    <option value="rarbg">rarbg</option>
+                    <option value="eztvx">eztvx</option>
+                </select>
+            </div>
+            <div style="font-size: small;" class="inline-block margin-top-25">
+                <label class="label block" for="category">Category</label>
+                <select name="category">
+                    <optgroup label="academic-torrents">
+                        <option value="All">All</option>
+                        <option value="Dataset">Dataset</option>
+                        <option value="Course">Course</option>
+                        <option value="Paper">Paper</option>
+                    </optgroup>
+                </select>
+            </div>
         </div>
 
     </form>

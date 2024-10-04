@@ -256,11 +256,22 @@ p {
     border-radius: 10px 10px 0px 0px;
 
 }
+
+.yts-lang{
+    padding-inline: 5px;
+    border: 1px solid var(--foreground-10);
+    background-color: var(--foreground-10);
+    border-radius: 5px;
+    font-size: smaller;
+    margin-left: 10px;
+}
+
 .title .yts-h2{
     margin: 0;
     border: 0;
     padding: 0;
     font-size: 20px;
+    display: inline;
 }
 
 .movie-info span{
@@ -341,9 +352,43 @@ h1 {
     cursor: pointer;
 }
 
+
+.label{
+    font-size: 15px;
+    color: var(--foreground-50);
+}
+
 .inline {
     display: inline;
 }
+
+
+.block{
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+.margin-top-25 {
+    margin-top: 25px;
+}
+
+.margin-top-40px {
+    margin-top: 40px;
+}
+
+.margin-top-50 {
+    margin-top: 50px;
+}
+
+
+
 
 
 .margin-right-15 {
@@ -354,9 +399,6 @@ h1 {
     margin-right: 25px;
 }
 
-.margin-top-25 {
-    margin-top: 25px;
-}
 
 .margin-bottom-5 {
     margin-bottom: 5px;
@@ -369,11 +411,6 @@ h1 {
 .margin-bottom-20 {
     margin-bottom: 20px;
 }
-
-.margin-top-40px {
-    margin-top: 40px;
-}
-
 
 .margin-bottom-50 {
     margin-bottom: 50px;
@@ -388,9 +425,7 @@ div.margin-bottom-50:last-of-type {
   padding-bottom: 100px;    
 }
 
-.margin-top-50 {
-    margin-top: 50px;
-}
+
 
 .margin-bottom-100 {
     margin-bottom: 100px;
