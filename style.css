@@ -213,7 +213,8 @@ img {
 
 
 .flex-row img {
-    height: 100%;
+    height: auto;
+    width: auto;
     margin-right: 20px;
     margin-bottom: 20px;
 
@@ -264,6 +265,16 @@ p {
     border-radius: 5px;
     font-size: smaller;
     margin-left: 10px;
+}
+
+.overlay {
+    padding: 5px;
+    border: 1px solid var(--foreground-10);
+    background-color: var(--foreground-10);
+    color: var(--foreground-75);
+    border-radius: 5px;
+    font-size: large;
+    text-decoration: none;
 }
 
 .title .yts-h2{
@@ -332,6 +343,7 @@ td {
     width: 100%;
 
 }
+
 
 
 h1 {
@@ -668,6 +680,11 @@ li h3 {
         position: relative;
         left: 0;
 
+    }
+
+    .yt-link{
+        margin-left: 35%;
+        
     }
 
 

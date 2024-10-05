@@ -104,7 +104,10 @@ function print_yts_torrent_results($results, $query)
                 $lang = $value["lang"];
 
                 echo "<div class=\"flex-row margin-bottom-100\">";
+                echo "<div>";
                 echo "<img src=\"proxy/image_proxy.php?url=$img\">";
+                echo "<div><a class=\"overlay yt-link\" href=\"https://inv.nadeko.net/watch?v=$yt_trailer_code\">Watch Trailer</a></div>";
+                echo "</div>";
                 echo "<div class=\"t-width\">";
                 echo "<div class=\"title\">";
                 echo "<h2 class=\"yts-h2\"";
