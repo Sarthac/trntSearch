@@ -89,7 +89,7 @@ function print_piratebay_results($results, $query)
             echo "</table>";
             echo "</div>";
         }
-        echo "<div class=\"margin-bottom-120\"></div>";
+        echo "<div class=\"margin-bottom-100\"></div>";
     } else {
         print_no_result_text($query);
     }

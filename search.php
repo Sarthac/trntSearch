@@ -24,7 +24,7 @@ $category = $_REQUEST["category"];
             </button>
         </div>
         <div>
-            <div class="inline-block margin-top-25">
+            <div class="inline-block margin-top-20">
                 <label class="label block" for="provider">Provider</label>
                 <select name="site">
                     <option value="yts" <?php if ($site == "yts") echo "selected" ?>>yts</option>
@@ -36,7 +36,7 @@ $category = $_REQUEST["category"];
                 </select>
             </div>
 
-            <div class="inline-block margin-top-25">
+            <div class="inline-block margin-top-20">
                 <label class="label block" for="category">Category</label>
                 <select class="second-select" name="category">
                     <optgroup label="academic-torrents">

@@ -19,7 +19,7 @@ require_once 'misc/header.php';
         </div>
 
         <div>
-            <div class="inline-block margin-top-25">
+            <div class="inline-block margin-top-20">
                 <label class="label block " for="provider">Provider</label>
                 <select name="site">
                     <option value="yts">yts</option>
@@ -30,7 +30,7 @@ require_once 'misc/header.php';
                     <option value="eztvx">eztvx</option>
                 </select>
             </div>
-            <div style="font-size: small;" class="inline-block margin-top-25">
+            <div style="font-size: small;" class="inline-block margin-top-20">
                 <label class="label block" for="category">Category</label>
                 <select name="category">
                     <optgroup label="academic-torrents">

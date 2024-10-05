@@ -19,13 +19,14 @@ function get_yts_results($query)
                 $results = array();
                 $results2 = array();
 
-
+                $imdb_code = $item["imdb_code"];
                 $title = $item["title"];
                 $year = $item["year"];
                 $rating = $item["rating"];
                 $runtime = $item["runtime"];
                 $genres = $item["genres"];
                 $summary = $item["summary"];
+                $yt_trailer_code = $item["yt_trailer_code"];
                 $img = $item["medium_cover_image"];
                 $lang = $item["language"];
 
@@ -34,10 +35,12 @@ function get_yts_results($query)
                     array(
                         "title" => $title,
                         "year" => $year,
+                        "imdb_code" => $imdb_code,
                         "rating" => $rating,
                         "runtime" => $runtime,
                         "genres" => $genres,
                         "summary" => $summary,
+                        "yt_trailer_code" => $yt_trailer_code,
                         "img" => $img,
                         "lang" => $lang
                     )
@@ -91,10 +94,12 @@ function print_yts_torrent_results($results, $query)
             foreach ($result["data"] as $value) {
                 $title = $value["title"];
                 $year = $value["year"];
+                $imdb_code = $value["imdb_code"];
                 $rating = $value["rating"];
                 $runtime = $value["runtime"];
                 $runtime = minutesToTime($runtime);
                 $summary = $value["summary"];
+                $yt_trailer_code = $value["yt_trailer_code"];
                 $img = $value["img"];
                 $lang = $value["lang"];
 
@@ -118,6 +123,7 @@ function print_yts_torrent_results($results, $query)
                 }
                 echo " </span>";
                 echo "<span>$year</span>";
+                echo "<a href=\"https://d.opnxng.com/title/$imdb_code\" target=\"_blank\">...More</a>";
                 echo "</div>";
                 echo "</div>";
 

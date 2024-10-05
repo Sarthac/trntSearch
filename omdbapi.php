@@ -51,6 +51,7 @@ function print_omdbapi_details($results)
     if ($results["Response"] != "False") {
 
         $title = $results["Title"];
+        $imdbID = $results["imdbID"];
         $year = $results["Year"];
         $imdbRating = $results["imdbRating"];
         $rated = $results["Rated"];
@@ -72,9 +73,9 @@ function print_omdbapi_details($results)
         echo "<span>$imdbRating </span>";
         echo "<span>$runtime </span>";
         echo "<span>$genre </span>";
-        echo " </span>";
         echo "<span>$released</span>";
         echo "</div>";
+        echo "<a style=\"font-size: smaller;\" href=\"https://d.opnxng.com/title/$imdbID\" target=\"_blank\">...More about series</a>";
         echo "</div>";
         echo "</div>";
     }
