@@ -6,7 +6,7 @@ include "misc/header.php";
 
 <table class="instance-table">
     <tr>
-        <th>Place</th>
+        <th>Hosted</th>
         <td>Europe/Germany</td>
     </tr>
     <tr>
@@ -28,7 +28,7 @@ include "misc/header.php";
 
 <table class="instance-table">
     <tr>
-        <th>Place</th>
+        <th>Hosted</th>
         <td>NorthAmerica/US</td>
     </tr>
     <tr>
@@ -41,6 +41,21 @@ include "misc/header.php";
         <td><a href="http://po2fyxzl3tadffsiotc3zvgrb4hgex7xpvlutah3um6ick6cneidkrid.onion">http://po2fyxzl3tadffsiotc3zvgrb4hgex7xpvlutah3um6ick6cneidkrid.onion</a></td>
     </tr>
 </table>
+
+<table class="instance-table">
+    <tr>
+        <th>Tor</th>
+        <td><a href="http://vyurzzaj3zi4gblkfabqrioyo5rfi5pczjjn3decuvjw2bqvbowhfwyd.onion">http://vyurzzaj3zi4gblkfabqrioyo5rfi5pczjjn3decuvjw2bqvbowhfwyd.onion</a></td>
+    </tr>
+
+    <tr>
+        <th>I2P</th>
+        <td><a href="http://tb5t4jzxp4uu67jrm7iqizs4cms26mz7qefj2nz6roxhhw4p22ba.b32.i2p">http://tb5t4jzxp4uu67jrm7iqizs4cms26mz7qefj2nz6roxhhw4p22ba.b32.i2p</a></td>
+    </tr>
+</table>
+
+
+
 
 <?php
 include "misc/footer.php";
