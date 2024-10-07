@@ -14,14 +14,14 @@ return (object) array(
 
     // the following array is for tor-instance, uncommet to use it for tor-instance. don't forget to commet above array
 
-    // "invidious_instance" => array(
+    // "invidious_instances" => array(
     //     "http://inv.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion",
     // ),
 
 
     // the following array is for i2p-instance, uncommet to use it for i2p-instance. don't forget to commet above array
 
-    // "invidious_instance" => array(
+    // "invidious_instances" => array(
     //     "http://inv.zzls.i2p",
     // ),
 
@@ -40,7 +40,7 @@ return (object) array(
 
     // the following array is for tor-instance, uncommet to use it for tor-instance. don't forget to commet above array
 
-    // "invidious_instance" => array(
+    // "libremdb_instances" => array(
     //     "http://ld.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion",
     //     "http://libremdb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion",
     //     "http://libremdb.r4focoma7gu2zdwwcjjad47ysxt634lg73sxmdbkdozanwqslho5ohyd.onion"
@@ -48,7 +48,7 @@ return (object) array(
 
     // the following array is for i2p-instance, uncommet to use it for i2p-instance. don't forget to commet above array
 
-    // "invidious_instance" => array(
+    // "libremdb_instances" => array(
     //     "http://vernz3ubrntql4wrgyrssd6u3qzi36zrhz2agbo6vibzbs5olk2q.b32.i2p",
     //     "http://qjlgasoy3nxepgzntucmcnb6pryqxakwdu7sxvqzi7spdfootryq.b32.i2p",
     //     "http://5j37qusybvyhecljn4hr5i4chifdlfqfkfveythzpzyfxiibt7cq.b32.i2p"
