@@ -6,7 +6,7 @@ return (object) array(
     "bittorent_trackers" => "&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce",
     "academic_torrent_trackers" => "&tr=https%3A%2F%2Facademictorrents.com%2Fannounce.php&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
 
-    // randomly select invidious instance so that one instance won't get flooded with user request
+    // randomly select invidious instance so that one instance won't get flooded with user requests
     "invidious_instances" => array(
         "https://invidious.jing.rocks",
         "https://inv.nadeko.net"
@@ -27,7 +27,7 @@ return (object) array(
 
 
 
-    // randomly select libremdb instance so that one instance won't get flooded with user request
+    // randomly select libremdb instance so that one instance won't get flooded with user requests
     "libremdb_instances" => array(
         "https://ld.vern.cc",
         "https://d.opnxng.com",
@@ -49,9 +49,7 @@ return (object) array(
     // the following array is for i2p-instance, uncommet to use it for i2p-instance. don't forget to commet above array
 
     // "libremdb_instances" => array(
-    //     "http://vernz3ubrntql4wrgyrssd6u3qzi36zrhz2agbo6vibzbs5olk2q.b32.i2p",
-    //     "http://qjlgasoy3nxepgzntucmcnb6pryqxakwdu7sxvqzi7spdfootryq.b32.i2p",
-    //     "http://5j37qusybvyhecljn4hr5i4chifdlfqfkfveythzpzyfxiibt7cq.b32.i2p"
+    //     "http://qjlgasoy3nxepgzntucmcnb6pryqxakwdu7sxvqzi7spdfootryq.b32.i2p"
     // ),
 
 
