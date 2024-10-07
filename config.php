@@ -41,8 +41,6 @@ return (object) array(
     // the following array is for tor-instance, uncommet to use it for tor-instance. don't forget to commet above array
 
     "libremdb_instances" => array(
-        "http://ld.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion",
-        "http://libremdb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion",
         "http://libremdb.r4focoma7gu2zdwwcjjad47ysxt634lg73sxmdbkdozanwqslho5ohyd.onion"
     ),
 
