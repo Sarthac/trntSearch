@@ -6,6 +6,11 @@ function print_total_results($total)
     echo  "<span class=\"found-results\"> Found " . $total . " results </span>";
 }
 
+function get_instance($array)
+{
+    $result = random_int(0, count($array) - 1);
+    return $array[$result];
+}
 
 function print_no_result_text($query)
 {

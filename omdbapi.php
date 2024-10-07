@@ -48,6 +48,8 @@ function get_omdbapi_details($query)
 
 function print_omdbapi_details($results)
 {
+    $config = require_once "config.php";
+    $libremdb_instance = get_instance($config->libremdb_instances);
     if ($results["Response"] != "False") {
 
         $title = $results["Title"];
@@ -75,7 +77,7 @@ function print_omdbapi_details($results)
         echo "<span>$genre </span>";
         echo "<span>$released</span>";
         echo "</div>";
-        echo "<a style=\"font-size: smaller;\" href=\"https://d.opnxng.com/title/$imdbID\" target=\"_blank\">...More about series</a>";
+        echo "<a style=\"font-size: smaller;\" href=\"$libremdb_instance/title/$imdbID\" target=\"_blank\">...More about series</a>";
         echo "</div>";
         echo "</div>";
     }

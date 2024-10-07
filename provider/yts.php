@@ -1,6 +1,6 @@
 <?php
 include "misc/utils.php";
-$config = include "config.php";
+
 
 function get_yts_results($query)
 
@@ -85,7 +85,10 @@ function get_yts_results($query)
 
 function print_yts_torrent_results($results, $query)
 {
+    $config = require_once "config.php";
     $total = count($results);
+    $invidious_instance = get_instance($config->invidious_instances);
+    $libremdb_instance = get_instance($config->libremdb_instances);
     if ($total != 0) {
 
         print_total_results($total);
@@ -106,7 +109,7 @@ function print_yts_torrent_results($results, $query)
                 echo "<div class=\"flex-row margin-bottom-100\">";
                 echo "<div>";
                 echo "<img src=\"proxy/image_proxy.php?url=$img\">";
-                echo "<div><a class=\"overlay yt-link\" href=\"https://inv.nadeko.net/watch?v=$yt_trailer_code\">Watch Trailer</a></div>";
+                echo (!empty($yt_trailer_code)) ? "<div><a class=\"overlay yt-link\" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">Watch Trailer</a></div>" : "No Trailer";
                 echo "</div>";
                 echo "<div class=\"t-width\">";
                 echo "<div class=\"title\">";
@@ -126,7 +129,7 @@ function print_yts_torrent_results($results, $query)
                 }
                 echo " </span>";
                 echo "<span>$year</span>";
-                echo "<a href=\"https://d.opnxng.com/title/$imdb_code\" target=\"_blank\">...More</a>";
+                echo "<a href=\"$libremdb_instance/title/$imdb_code\" target=\"_blank\">...More</a>";
                 echo "</div>";
                 echo "</div>";
 

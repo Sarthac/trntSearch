@@ -1,6 +1,11 @@
+<?php
+$config = require "config.php"
+?>
+
+
 <div class="footer">
     <div>
-        <h3><a href="./">trntSearch</a></h3>
+        <h3><a href="./"><?php echo $config->project_name ?></a></h3>
     </div>
 
     <div>
