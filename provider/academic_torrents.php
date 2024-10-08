@@ -10,7 +10,7 @@ function search_by_name($query, $category)
     global $config, $xml, $items;
 
     // example "data structure"
-    $query = trim(strtolower($query));
+    $query = trim($query);
     $results_title = array();
     $results_description = array();
 
@@ -25,16 +25,12 @@ function search_by_name($query, $category)
         $infohash = (string) $item->infohash;
         $magnet = "magnet:?xt=urn:btih:$infohash&dn=$title" . $config->academic_torrent_trackers;
         $size = $item->size;
-
-        // making it lower to retrive result wihout distingush in case
-        $title_lower = strtolower($title);
-        $description_lower = strtolower($description);
         $size = human_filesize($size);
 
 
-        $pattern = "/" . $query . "/";
-        $match_in_title = preg_match($pattern, $title_lower);
-        $match_in_description = preg_match($pattern, $description_lower);
+        $pattern = "/" . $query . "/i";
+        $match_in_title = preg_match($pattern, $title);
+        $match_in_description = preg_match($pattern, $description);
 
         //creating two while
         // 1. retrive all results from query that found in title and show all
@@ -108,6 +104,7 @@ function search_by_name($query, $category)
 function print_academic_torrents_results($results, $query)
 {
     $total = count($results);
+
     if ($total != 0) {
         print_total_results($total);
 
@@ -117,6 +114,21 @@ function print_academic_torrents_results($results, $query)
             $description = htmlspecialchars($result["description"]);
             $magnet = $result["magnet"];
             $size = $result["size"];
+
+
+            $pattern = "/" . $query . "/i";
+
+            if (preg_match($pattern, $title, $matches, PREG_OFFSET_CAPTURE)) {
+                $start = $matches[0][1];
+                $end = $start + strlen($matches[0][0]);
+                $title = substr($title, 0, $start) . '<span class="match">' . $matches[0][0] . '</span>' . substr($title, $end);
+            }
+
+            if (preg_match($pattern, $description, $description_matches, PREG_OFFSET_CAPTURE)) {
+                $start = $description_matches[0][1];
+                $end = $start + strlen($description_matches[0][0]);
+                $description = substr($description, 0, $start) . '<span class="match">' . $description_matches[0][0] . '</span>' . substr($description, $end);
+            }
 
             echo "<div class = \"margin-bottom-50\">";
             echo "<h2>$title</h2>";

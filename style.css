@@ -104,6 +104,12 @@ body > * {
 
 }
 
+.match{
+    text-decoration: underline;
+    text-decoration-style:wavy;
+    color: var(--foreground-100);
+}
+
 select {
     background-color: var(--input-background);
     color: var(--foreground-100);
