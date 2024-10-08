@@ -118,16 +118,18 @@ function print_academic_torrents_results($results, $query)
 
             $pattern = "/" . $query . "/i";
 
-            if (preg_match($pattern, $title, $matches, PREG_OFFSET_CAPTURE)) {
-                $start = $matches[0][1];
-                $end = $start + strlen($matches[0][0]);
-                $title = substr($title, 0, $start) . '<span class="match">' . $matches[0][0] . '</span>' . substr($title, $end);
-            }
+            if (strlen($query) > 1) {
+                if (preg_match($pattern, $title, $matches, PREG_OFFSET_CAPTURE)) {
+                    $start = $matches[0][1];
+                    $end = $start + strlen($matches[0][0]);
+                    $title = substr($title, 0, $start) . '<span class="match">' . $matches[0][0] . '</span>' . substr($title, $end);
+                }
 
-            if (preg_match($pattern, $description, $description_matches, PREG_OFFSET_CAPTURE)) {
-                $start = $description_matches[0][1];
-                $end = $start + strlen($description_matches[0][0]);
-                $description = substr($description, 0, $start) . '<span class="match">' . $description_matches[0][0] . '</span>' . substr($description, $end);
+                if (preg_match($pattern, $description, $description_matches, PREG_OFFSET_CAPTURE)) {
+                    $start = $description_matches[0][1];
+                    $end = $start + strlen($description_matches[0][0]);
+                    $description = substr($description, 0, $start) . '<span class="match">' . $description_matches[0][0] . '</span>' . substr($description, $end);
+                }
             }
 
             echo "<div class = \"margin-bottom-50\">";
