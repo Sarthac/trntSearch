@@ -248,7 +248,7 @@ p {
     padding: 20px;
     font-size: 18px;
     color: var(--foreground-75);
-    overflow: hidden;
+    word-wrap: break-word;
 
 }
 
