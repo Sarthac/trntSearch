@@ -1,7 +1,7 @@
 <?php
 $query = htmlspecialchars($_REQUEST["query"]);
 $site = $_REQUEST["site"];
-$category = $_REQUEST["category"];
+$category = strtolower($_REQUEST["category"]);
 
 $results = array();
 
@@ -19,7 +19,7 @@ switch ($site) {
 
     case "piratebay":
         include "provider/piratebay.php";
-        $results = get_thepiratebay_results($query);
+        $results = get_thepiratebay_results($query, $category);
         break;
 
     case "1337x":

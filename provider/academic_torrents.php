@@ -43,7 +43,7 @@ function search_by_name($query, $category)
         // retrive results if the query present in title first 
         while ($match_in_title) {
 
-            if ($category == "All") {
+            if ($category == "all") {
                 array_push(
                     $results_title,
                     array(
@@ -54,7 +54,7 @@ function search_by_name($query, $category)
                         "size" => $size,
                     )
                 );
-            } elseif ($category == $file_category) {
+            } elseif ($category == strtolower($file_category)) {
                 array_push(
                     $results_title,
                     array(
@@ -73,7 +73,7 @@ function search_by_name($query, $category)
         // retrive results if the query present in description
         while ($match_in_title == false && $match_in_description == true) {
 
-            if ($category == "All") {
+            if ($category == "all") {
                 array_push(
                     $results_description,
                     array(
@@ -84,7 +84,7 @@ function search_by_name($query, $category)
                         "size" => $size,
                     )
                 );
-            } elseif ($category == $file_category) {
+            } elseif ($category == strtolower($file_category)) {
                 array_push(
                     $results_description,
                     array(

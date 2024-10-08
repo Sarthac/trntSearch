@@ -40,10 +40,19 @@ $category = $_REQUEST["category"];
                 <label class="label block" for="category">Category</label>
                 <select class="second-select" name="category">
                     <optgroup label="academic-torrents">
-                        <option value="All" <?php if ($category == "All") echo "selected" ?>>All</option>
-                        <option value="Dataset" <?php if ($category == "Dataset") echo "selected" ?>>Dataset</option>
-                        <option value="Course" <?php if ($category == "Course") echo "selected" ?>>Course</option>
-                        <option value="Paper" <?php if ($category == "Paper") echo "selected" ?>>Paper</option>
+                        <option value="all" <?php if ($category == "all") echo "selected" ?>>All</option>
+                        <option value="dataset" <?php if ($category == "dataset") echo "selected" ?>>Dataset</option>
+                        <option value="course" <?php if ($category == "course") echo "selected" ?>>Course</option>
+                        <option value="paper" <?php if ($category == "paper") echo "selected" ?>>Paper</option>
+                    </optgroup>
+                    <optgroup label="piratebay">
+                        <option value="all" <?php if ($category == "all") echo "selected" ?>>All</option>
+                        <option value="music" <?php if ($category == "music") echo "selected" ?>>Music</option>
+                        <option value="video" <?php if ($category == "video") echo "selected" ?>>Videos</option>
+                        <option value="application" <?php if ($category == "application") echo "selected" ?>>Applications</option>
+                        <option value="game" <?php if ($category == "game") echo "selected" ?>>Games</option>
+                        <option value="yyy" <?php if ($category == "yyy") echo "selected" ?>>YYY</option>
+                        <option value="other" <?php if ($category == "other") echo "selected" ?>>Other</option>
                     </optgroup>
                 </select>
             </div>
@@ -73,7 +82,7 @@ switch ($site) {
 
     case "piratebay":
         include "provider/piratebay.php";
-        $results = get_thepiratebay_results($query);
+        $results = get_thepiratebay_results($query, $category);
         print_piratebay_results($results, $query);
         break;
 

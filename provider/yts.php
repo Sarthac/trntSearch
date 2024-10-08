@@ -1,10 +1,11 @@
 <?php
 include "misc/utils.php";
-
+$config = require_once "config.php";
 
 function get_yts_results($query)
 
 {
+    global $config;
     $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
     $results3 = array();
     try {
@@ -52,7 +53,7 @@ function get_yts_results($query)
                     $size = $torrent["size"];
                     $seeders = $torrent["seeds"];
                     $hash = $torrent["hash"];
-                    $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . "&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce";
+                    $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $config->yts_trackers;
 
                     array_push(
                         $results2,
@@ -85,7 +86,7 @@ function get_yts_results($query)
 
 function print_yts_torrent_results($results, $query)
 {
-    $config = require_once "config.php";
+    global $config;
     $total = count($results);
     $invidious_instance = get_instance($config->invidious_instances);
     $libremdb_instance = get_instance($config->libremdb_instances);

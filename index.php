@@ -8,7 +8,7 @@ require_once 'misc/header.php';
 
 <body>
 
-    <form class=" search-container" action="search.php" method="get" autocomplete="off">
+    <form class="search-container" action="search.php" method="get" autocomplete="off">
         <!-- <h1 class="no-decoration">trntSearch</h1> -->
         <div class="input-wrap">
             <input class="code" type="text" name="query" placeholder="Search" autofocus>
@@ -34,10 +34,19 @@ require_once 'misc/header.php';
                 <label class="label block" for="category">Category</label>
                 <select name="category">
                     <optgroup label="academic-torrents">
-                        <option value="All">All</option>
-                        <option value="Dataset">Dataset</option>
-                        <option value="Course">Course</option>
-                        <option value="Paper">Paper</option>
+                        <option value="all">All</option>
+                        <option value="dataset">Dataset</option>
+                        <option value="course">Course</option>
+                        <option value="paper">Paper</option>
+                    </optgroup>
+                    <optgroup label="piratebay">
+                        <option value="all">All</option>
+                        <option value="music">Music</option>
+                        <option value="video">Videos</option>
+                        <option value="application">Applications</option>
+                        <option value="game">Games</option>
+                        <option value="yyy">YYY</option>
+                        <option value="other">Other</option>
                     </optgroup>
                 </select>
             </div>

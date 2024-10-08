@@ -2,10 +2,36 @@
 $config = require "config.php";
 require "misc/utils.php";
 
-function get_thepiratebay_results($query)
+function get_thepiratebay_results($query, $category)
 {
+    switch ($category) {
+        case "all":
+            $category = "0";
+            break;
+        case "music":
+            $category = "100";
+            break;
+        case "video":
+            $category = "200";
+            break;
+        case "application":
+            $category = "300";
+            break;
+        case "game":
+            $category = "400";
+            break;
+        case "yyy":
+            $category = "500";
+            break;
+        case "other":
+            $category = "600";
+            break;
+        default:
+            $category = "0";
+            break;
+    }
     global $config;
-    $url = "https://apibay.org/q.php?q=$query";
+    $url = "https://apibay.org/q.php?q=$query&cat=$category";
     $response = file_get_contents($url);
     $json_response = json_decode($response, true);
 
@@ -24,7 +50,7 @@ function get_thepiratebay_results($query)
         $leechers = (int) $response["leechers"];
         $added = $response["added"];
 
-        $magnet = "magnet:?xt=urn:btih:$hash&dn=$name" . $config->bittorent_trackers;
+        $magnet = "magnet:?xt=urn:btih:$hash&dn=$name" . $config->bittorrent_trackers;
 
         if ($name == "No results returned")
             break;

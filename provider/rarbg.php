@@ -1,5 +1,6 @@
 <?php
-require("misc/utils.php");
+require "misc/utils.php";
+$config = require_once "config.php"
 ?>
 
 <?php
@@ -44,6 +45,7 @@ $row = null;
 // $query = $_REQUEST["query"];
 function get_rarbg_results($query)
 {
+    global $config;
     $db = new SQLite3('assets/rarbg_db.sqlite');
     $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%')";
 
@@ -58,7 +60,7 @@ function get_rarbg_results($query)
         $date = $row["dt"];
         $category = $row["cat"];
         $size = $row["size"];
-        $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . "&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce";
+        $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $config->yts_trackers . $config->bittorrent_trackers;
 
         array_push(
             $results,
