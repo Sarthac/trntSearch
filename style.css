@@ -546,8 +546,8 @@ li h3 {
     }
 
     .flex-row img {
+        margin-right: 0;
         width: 50%;
-        margin-left: 25%;
     }
 
 
@@ -689,9 +689,22 @@ li h3 {
 
     }
 
-    .yt-link{
-        margin-left: 35%;
+    .flex-row img {
+        margin-right: 0;
+        /* width: 50%; */
+    }
+
+    .yts-link{
+        display: flex;
+        justify-content: center;
         
+    }
+
+    .flex-column-center{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
 

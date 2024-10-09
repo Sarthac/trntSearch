@@ -1,92 +1,91 @@
 <?php
-include "misc/utils.php";
+
+require "misc/header.php";
+
 $config = require_once "config.php";
+require_once "misc/utils.php";
+$id = $_GET['id'];
 
-function get_yts_results($query)
 
+function get_suggestions($id)
 {
     global $config;
-    $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
+
+    $url = "https://yts.mx/api/v2/movie_suggestions.json?movie_id=$id";
+
     $results3 = array();
-    try {
-        $response = file_get_contents($url);
-        if ($response === false) {
-            throw new Exception("yts.mx is down");
-        }
-        $json_results =  json_decode($response, true);
-        if ($json_results["status"] == "ok" && $json_results["data"]["movie_count"] != 0) {
-            $items = $json_results["data"]["movies"];
-            foreach ($items as $item) {
-                $results = array();
-                $results2 = array();
 
-                $id = $item["id"];
-                $imdb_code = $item["imdb_code"];
-                $title = $item["title"];
-                $year = $item["year"];
-                $rating = $item["rating"];
-                $runtime = $item["runtime"];
-                $genres = $item["genres"];
-                $summary = $item["summary"];
-                $yt_trailer_code = $item["yt_trailer_code"];
-                $img = $item["medium_cover_image"];
-                $lang = $item["language"];
+    $response = file_get_contents($url);
+    $json_results = json_decode($response, true);
 
-                array_push(
-                    $results,
-                    array(
-                        "id" => $id,
-                        "title" => $title,
-                        "year" => $year,
-                        "imdb_code" => $imdb_code,
-                        "rating" => $rating,
-                        "runtime" => $runtime,
-                        "genres" => $genres,
-                        "summary" => $summary,
-                        "yt_trailer_code" => $yt_trailer_code,
-                        "img" => $img,
-                        "lang" => $lang
-                    )
-                );
+    if ($json_results["status"] == "ok") {
+        foreach ($json_results["data"]["movies"] as $item) {
+            $results = array();
+            $results2 = array();
 
-                foreach ($item["torrents"] as $torrent) {
-                    $quality = $torrent["quality"];
-                    $type = $torrent["type"];
-                    $size = $torrent["size"];
-                    $seeders = $torrent["seeds"];
-                    $hash = $torrent["hash"];
-                    $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $config->yts_trackers;
+            $id = $item["id"];
+            $imdb_code = $item["imdb_code"];
+            $title = $item["title"];
+            $year = $item["year"];
+            $rating = $item["rating"];
+            $runtime = $item["runtime"];
+            $genres = $item["genres"];
+            $summary = $item["summary"];
+            $yt_trailer_code = $item["yt_trailer_code"];
+            $img = $item["medium_cover_image"];
+            $lang = $item["language"];
 
-                    array_push(
-                        $results2,
-                        array(
-                            "quality" => $quality,
-                            "type" => $type,
-                            "size" => $size,
-                            "seeders" => $seeders,
-                            "magnet" => "$magnet"
-                        )
-                    );
-                }
+            array_push(
+                $results,
+                array(
+                    "id" => $id,
+                    "title" => $title,
+                    "year" => $year,
+                    "imdb_code" => $imdb_code,
+                    "rating" => $rating,
+                    "runtime" => $runtime,
+                    "genres" => $genres,
+                    "summary" => $summary,
+                    "yt_trailer_code" => $yt_trailer_code,
+                    "img" => $img,
+                    "lang" => $lang
+                )
+            );
+
+            foreach ($item["torrents"] as $torrent) {
+                $quality = $torrent["quality"];
+                // $type = $torrent["type"];
+                $size = $torrent["size"];
+                $seeders = $torrent["seeds"];
+                $hash = $torrent["hash"];
+                $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $config->yts_trackers;
 
                 array_push(
-                    $results3,
+                    $results2,
                     array(
-                        "data" => $results,
-                        "torrents" => $results2
+                        "quality" => $quality,
+                        // "type" => $type,
+                        "size" => $size,
+                        "seeders" => $seeders,
+                        "magnet" => "$magnet"
                     )
                 );
             }
+
+            array_push(
+                $results3,
+                array(
+                    "data" => $results,
+                    "torrents" => $results2
+                )
+            );
         }
-    } catch (Exception $e) {
-        echo "An error occurred: " . $e->getMessage();
+        return $results3;
     }
-    return $results3;
 }
 
 
-
-function print_yts_torrent_results($results, $query)
+function print_suggestions($results)
 {
     global $config;
     $total = count($results);
@@ -94,7 +93,6 @@ function print_yts_torrent_results($results, $query)
     $libremdb_instance = get_instance($config->libremdb_instances);
     if ($total != 0) {
 
-        print_total_results($total);
         foreach ($results as $result) {
 
             foreach ($result["data"] as $value) {
@@ -152,13 +150,13 @@ function print_yts_torrent_results($results, $query)
             foreach ($result["torrents"] as $key) {
 
                 $quality = $key["quality"];
-                $type = $key["type"];
+                // $type = $key["type"];
                 $size = $key["size"];
                 $seeders = $key["seeders"];
                 $magnet = $key["magnet"];
 
                 echo "<tr>";
-                echo "<td>$type - $quality - $size</td>";
+                echo "<td>$quality - $size</td>";
 
                 echo ($seeders == 100) ? "<td>$seeders+</td>" : "<td>$seeders</td>";
                 echo "<td>";
@@ -174,7 +172,10 @@ function print_yts_torrent_results($results, $query)
             echo "</div>";
             echo "</div>";
         }
-    } else {
-        print_no_result_text($query);
     }
 }
+
+$results = get_suggestions($id);
+print_suggestions($results);
+
+require "misc/footer.php";
