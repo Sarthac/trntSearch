@@ -2,11 +2,12 @@
 include "misc/utils.php";
 $config = require_once "config.php";
 
-function get_yts_results($query)
 
+function get_yts_results($query)
 {
-    global $config;
     $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
+    global $config;
+
     $results3 = array();
     try {
         $response = file_get_contents($url);
@@ -84,7 +85,92 @@ function get_yts_results($query)
     return $results3;
 }
 
+function get_id_by_name($query)
+{
+    $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
+    $response = file_get_contents($url);
+    $json_results =  json_decode($response, true);
+    if ($json_results["status"] == "ok" && $json_results["data"]["movie_count"] != 0) {
+        return $json_results["data"]["movies"][0]["id"];
+    }
+}
 
+function get_suggestions($id)
+{
+    global $config;
+
+    $url = "https://yts.mx/api/v2/movie_suggestions.json?movie_id=$id";
+
+    $results3 = array();
+
+    $response = file_get_contents($url);
+    $json_results = json_decode($response, true);
+
+    if ($json_results["status"] == "ok") {
+        foreach ($json_results["data"]["movies"] as $item) {
+            $results = array();
+            $results2 = array();
+
+            $id = $item["id"];
+            $imdb_code = $item["imdb_code"];
+            $title = $item["title"];
+            $year = $item["year"];
+            $rating = $item["rating"];
+            $runtime = $item["runtime"];
+            $genres = $item["genres"];
+            $summary = $item["summary"];
+            $yt_trailer_code = $item["yt_trailer_code"];
+            $img = $item["medium_cover_image"];
+            $lang = $item["language"];
+
+            array_push(
+                $results,
+                array(
+                    "id" => $id,
+                    "title" => $title,
+                    "year" => $year,
+                    "imdb_code" => $imdb_code,
+                    "rating" => $rating,
+                    "runtime" => $runtime,
+                    "genres" => $genres,
+                    "summary" => $summary,
+                    "yt_trailer_code" => $yt_trailer_code,
+                    "img" => $img,
+                    "lang" => $lang
+                )
+            );
+
+            foreach ($item["torrents"] as $torrent) {
+                $quality = $torrent["quality"];
+                // $type = $torrent["type"];
+                $size = $torrent["size"];
+                $seeders = $torrent["seeds"];
+                $hash = $torrent["hash"];
+                $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $config->yts_trackers;
+
+                array_push(
+                    $results2,
+                    array(
+                        "quality" => $quality,
+                        // "type" => $type,
+                        "size" => $size,
+                        "seeders" => $seeders,
+                        "magnet" => "$magnet"
+                    )
+                );
+            }
+
+            array_push(
+                $results3,
+                array(
+                    "data" => $results,
+                    "torrents" => $results2
+                )
+            );
+        }
+        return $results3;
+    }
+}
 
 function print_yts_torrent_results($results, $query)
 {

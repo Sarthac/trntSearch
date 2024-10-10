@@ -41,9 +41,9 @@ require_once 'misc/header.php';
                     <optgroup label="piratebay">
                         <option value="all">All</option>
                         <option value="music">Music</option>
-                        <option value="video">Videos</option>
-                        <option value="application">Applications</option>
-                        <option value="game">Games</option>
+                        <option value="video">Video</option>
+                        <option value="application">Application</option>
+                        <option value="game">Game</option>
                         <option value="yyy">YYY</option>
                         <option value="other">Other</option>
                     </optgroup>

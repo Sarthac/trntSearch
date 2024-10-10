@@ -48,9 +48,9 @@ $category = $_REQUEST["category"];
                     <optgroup label="piratebay">
                         <option value="all" <?php if ($category == "all") echo "selected" ?>>All</option>
                         <option value="music" <?php if ($category == "music") echo "selected" ?>>Music</option>
-                        <option value="video" <?php if ($category == "video") echo "selected" ?>>Videos</option>
-                        <option value="application" <?php if ($category == "application") echo "selected" ?>>Applications</option>
-                        <option value="game" <?php if ($category == "game") echo "selected" ?>>Games</option>
+                        <option value="video" <?php if ($category == "video") echo "selected" ?>>Video</option>
+                        <option value="application" <?php if ($category == "application") echo "selected" ?>>Application</option>
+                        <option value="game" <?php if ($category == "game") echo "selected" ?>>Game</option>
                         <option value="yyy" <?php if ($category == "yyy") echo "selected" ?>>YYY</option>
                         <option value="other" <?php if ($category == "other") echo "selected" ?>>Other</option>
                     </optgroup>

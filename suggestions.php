@@ -84,7 +84,6 @@ function get_suggestions($id)
     }
 }
 
-
 function print_suggestions($results)
 {
     global $config;
