@@ -63,6 +63,7 @@ if (isset($suggestions)) {
     echo "<p>site=(torrent site to get results i.e yts, academic-torrents, 1337x, piratebay, rarbg and eztvx. Provide with query parameter)</p>";
     echo "<p>category=(category only need for academic_torrents and piratebay, for academic_torrents i.e all, dataset, course and paper. For piratebay i.e all, music, video, application, game, yyy and other)</p>";
     echo "<p>suggestions=(type a keyword that you want to get movie suggestions based on keyword. it doesn't need site, query or category as extra parameters)</p>";
+    echo "<p>page=(only for eztvx to get result from eztvx pages, defualt 30 results per page)";
 
     include_once "misc/footer.php";
 
