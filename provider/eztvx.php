@@ -1,20 +1,22 @@
-
 <?php
 require "misc/utils.php";
 ?>
 
 <?php
 
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
 function get_eztvx_results($query)
 {
-    $url = "https://eztvx.to/api/get-torrents?imdb_id=$query";
+    global $page;
+    $url = "https://eztvx.to/api/get-torrents?imdb_id=$query&page=$page";
     $json = file_get_contents($url);
     $json_results =  json_decode($json, true);
 
     $store_results = array();
 
     if ($json_results["torrents_count"] !== 0) {
+        $store_results  = array("torrents_count" => $json_results["torrents_count"]);
         $results = $json_results["torrents"];
         foreach ($results as $result) {
             $title = $result["title"];
@@ -38,63 +40,69 @@ function get_eztvx_results($query)
             );
         }
     }
-
-    return $store_results;
+    return array_reverse($store_results);
 }
-
 
 function print_eztvx_results($results, $query)
 {
+    global $page;
     $total = count($results);
 
     if ($total != 0) {
-        print_total_results($total);
+        print_total_results($total - 1); // -1 because it count "torrents_count" as a torrent which is not
         foreach ($results as $result) {
-            $title = $result['title'];
-            $seeds = $result['seeds'];
-            $magnet = $result['magnet'];
-            $date = $result['date'];
-            $date = date("Y-m-d H:i:s", $date);
-            $size = human_filesize($result['size']);
-            $img = $result['img'];
-            $img = "https:" . $img;
+            if (isset($result['title'])) {
+                $title = $result['title'];
+                $seeds = $result['seeds'];
+                $magnet = $result['magnet'];
+                $date = $result['date'];
+                $date = date("Y-m-d H:i:s", $date);
+                $size = human_filesize($result['size']);
+                $img = $result['img'];
+                $img = "https:" . $img;
 
-            echo "<div class=\"margin-bottom-50\">";
-            echo "<img src=\"proxy/image_proxy.php?url=$img\" alt=\"$query image\">";
-            echo "<h2>$title</h2>";
-            echo "<table>";
-            echo "<tr>";
-            echo "<th> Seeds </th>";
-
-
-            echo "<th> Date </th>";
-            echo "<th> Size </th>";
-            echo "<th> Magnet </th>";
-            echo "</tr>";
-
-            echo "<tr>";
-            echo "<td> $seeds </td>";
-            echo "<td> $date </td>";
-
-            echo "<td> $size </td>";
-            echo "<td>";
-            echo "<a href=\"$magnet\">";
-            echo "magnet";
-            echo "</a>";
-            echo "</td>";
+                echo "<div class=\"margin-bottom-50\">";
+                echo "<img src=\"proxy/image_proxy.php?url=$img\" alt=\"$query image\">";
+                echo "<h2>$title</h2>";
+                echo "<table>";
+                echo "<tr>";
+                echo "<th> Seeds </th>";
 
 
-            echo "</tr>";
-            echo "</table>";
-            echo "</div>";
+                echo "<th> Date </th>";
+                echo "<th> Size </th>";
+                echo "<th> Magnet </th>";
+                echo "</tr>";
+
+                echo "<tr>";
+                echo "<td> $seeds </td>";
+                echo "<td> $date </td>";
+
+                echo "<td> $size </td>";
+                echo "<td>";
+                echo "<a href=\"$magnet\">";
+                echo "magnet";
+                echo "</a>";
+                echo "</td>";
+
+
+                echo "</tr>";
+                echo "</table>";
+                echo "</div>";
+            }
         }
+        echo "<div class=\"margin-bottom-50\"></div>";
+
+        $pages = ceil($results["torrents_count"] / 30);
+        echo "<div style=\"word-break: break-word;\" class=\"flex-row-center\">";
+        for ($i = 2; $i <= $pages; $i++) {
+            echo "<a style=\"margin-left: 15px;\" href=\"./search.php?query=$query&site=eztvx&page=$i\">$i</a>";
+        }
+        echo "</div>";
         echo "<div class=\"margin-bottom-100\"></div>";
     } else {
         print_no_result_text($query);
     }
 }
-
-
-
 
 ?>

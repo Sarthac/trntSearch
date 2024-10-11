@@ -14,7 +14,7 @@ function request($url)
 $image_url = $_GET['url'];
 
 $image_domain = parse_url($image_url, PHP_URL_HOST);
-$allowed_domains = array("yts.mx", "m.media-amazon.com");
+$allowed_domains = array("yts.mx", "m.media-amazon.com", "ezimg.ch");
 
 
 if (in_array($image_domain, $allowed_domains)) {

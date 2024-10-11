@@ -5,7 +5,7 @@ require_once 'misc/header.php';
 <?php
 $query = htmlspecialchars($_REQUEST["query"]);
 $site = $_REQUEST["site"];
-$category = $_REQUEST["category"];
+$category = isset($_REQUEST["category"]) ? $_REQUEST["category"] : null;
 ?>
 
 

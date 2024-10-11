@@ -208,11 +208,6 @@ hr {
 
 }
 
-.flex-row {
-    display: column;
-
-}
-
 img {
     border-radius: 10px;
 }
@@ -228,6 +223,13 @@ img {
 
 .flex-row {
     display: flex;
+}
+
+.flex-row-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .flex-column {
