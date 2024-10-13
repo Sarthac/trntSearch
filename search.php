@@ -32,6 +32,7 @@ $category = isset($_REQUEST["category"]) ? $_REQUEST["category"] : null;
                     <option value="piratebay" <?php if ($site == "piratebay") echo "selected" ?>> piratebay</option>
                     <option value="1337x" <?php if ($site == "1337x") echo "selected" ?>> 1337x</option>
                     <option value="rarbg" <?php if ($site == "rarbg") echo "selected" ?>> rarbg</option>
+                    <option value="kiwi_torrent_research" <?php if ($site == "kiwi_torrent_research") echo "selected" ?>> kiwi_torrent_research</option>
                     <option value="eztvx" <?php if ($site == "eztvx") echo "selected" ?>> eztvx</option>
                 </select>
             </div>
@@ -97,6 +98,12 @@ switch ($site) {
         include "provider/rarbg.php";
         $results = get_rarbg_results($query);
         print_rarbg_results($results, $query);
+        break;
+
+    case "kiwi_torrent_research":
+        include "provider/kiwi_torrent_research.php";
+        $results = get_kiwi_torrent_research_results($query);
+        print_kiwi_torrent_research_results($results, $query);
         break;
 
     case "eztvx":

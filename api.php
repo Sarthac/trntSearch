@@ -40,6 +40,11 @@ if (isset($suggestions)) {
             $results = get_rarbg_results($query);
             break;
 
+        case "kiwi_torrent_research":
+            include "provider/kiwi_torrent_research.php";
+            $results = get_kiwi_torrent_research_results($query);
+            break;
+
         case "eztvx":
             include "provider/eztvx.php";
             include "omdbapi.php";

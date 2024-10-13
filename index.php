@@ -26,6 +26,7 @@ require_once 'misc/header.php';
                     <option value="piratebay">piratebay</option>
                     <option value="1337x">1337x</option>
                     <option value="rarbg">rarbg</option>
+                    <option value="kiwi_torrent_research">kiwi_torrent_research</option>
                     <option value="eztvx">eztvx</option>
                 </select>
             </div>
