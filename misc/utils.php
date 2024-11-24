@@ -3,7 +3,7 @@
 
 function print_total_results($total)
 {
-    echo  "<span class=\"found-results\"> Found " . $total . " results </span>";
+    echo ($total > 1) ? "<span class=\"found-results\"> Found " . $total . " results </span>" :  "<span class=\"found-results\"> Found " . $total . " result </span>";
 }
 
 function get_instance($array)

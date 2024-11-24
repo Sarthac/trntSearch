@@ -2,6 +2,7 @@
 
 $site = isset($_REQUEST["site"]) ? $_REQUEST["site"] : null;
 $suggestions = isset($_REQUEST["suggestions"]) ? $_REQUEST["suggestions"] : null;
+$page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
 
 $results = array();
 
@@ -14,7 +15,7 @@ if (isset($suggestions)) {
     switch ($site) {
         case "yts":
             include "provider/yts.php";
-            $results = get_yts_results($query);
+            $results = get_yts_results($query, $page);
             break;
 
         case "academic_torrents":
@@ -55,7 +56,7 @@ if (isset($suggestions)) {
 
         default:
             include "provider/yts.php";
-            $results = get_yts_results($query);
+            $results = get_yts_results($query, $page);
             break;
     }
 } else {

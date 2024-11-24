@@ -1,11 +1,12 @@
 <?php
 require_once 'misc/header.php';
-?>
 
-<?php
 $query = htmlspecialchars($_REQUEST["query"]);
 $site = $_REQUEST["site"];
 $category = isset($_REQUEST["category"]) ? $_REQUEST["category"] : null;
+$page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
+$sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : null;
+
 ?>
 
 
@@ -16,9 +17,8 @@ $category = isset($_REQUEST["category"]) ? $_REQUEST["category"] : null;
 <body>
 
     <form class="sub-search-container" action="search.php" method="get" autocomplete="off">
-        <!-- <h1 class="no-decoration mobile-logo"><a href="./">trntSearch</a></h1> -->
         <div class="input-wrap">
-            <input class="code" type="text" name="query" <?php echo "value=\"$query\""  ?>>
+            <input class="code" type="text" name="query" <?php echo "value=\"$query\"" ?>>
             <button class="submit-button" type="submit">
                 <img src="./assets/search.png" alt="search-icon">
             </button>
@@ -27,36 +27,70 @@ $category = isset($_REQUEST["category"]) ? $_REQUEST["category"] : null;
             <div class="inline-block margin-top-20">
                 <label class="label block" for="provider">Provider</label>
                 <select name="site">
-                    <option value="yts" <?php if ($site == "yts") echo "selected" ?>>yts</option>
-                    <option value="academic_torrents" <?php if ($site == "academic_torrents") echo "selected" ?>> academic_torrents</option>
-                    <option value="piratebay" <?php if ($site == "piratebay") echo "selected" ?>> piratebay</option>
-                    <option value="1337x" <?php if ($site == "1337x") echo "selected" ?>> 1337x</option>
-                    <option value="rarbg" <?php if ($site == "rarbg") echo "selected" ?>> rarbg</option>
-                    <option value="kiwi_torrent_research" <?php if ($site == "kiwi_torrent_research") echo "selected" ?>> kiwi_torrent_research</option>
-                    <option value="eztvx" <?php if ($site == "eztvx") echo "selected" ?>> eztvx</option>
-                </select>
-            </div>
+                    <option value="yts" <?php if ($site == "yts")
+                        echo "selected" ?>>yts</option>
+                        <option value="academic_torrents" <?php if ($site == "academic_torrents")
+                        echo "selected" ?>>
+                            academic_torrents</option>
+                        <option value="piratebay" <?php if ($site == "piratebay")
+                        echo "selected" ?>> piratebay</option>
+                        <option value="1337x" <?php if ($site == "1337x")
+                        echo "selected" ?>> 1337x</option>
+                        <option value="rarbg" <?php if ($site == "rarbg")
+                        echo "selected" ?>> rarbg</option>
+                        <option value="kiwi_torrent_research" <?php if ($site == "kiwi_torrent_research")
+                        echo "selected" ?>>
+                            kiwi_torrent_research</option>
+                        <option value="eztvx" <?php if ($site == "eztvx")
+                        echo "selected" ?>> eztvx</option>
+                    </select>
+                </div>
 
-            <div class="inline-block margin-top-20">
-                <label class="label block" for="category">Category</label>
-                <select class="second-select" name="category">
-                    <optgroup label="academic-torrents">
-                        <option value="all" <?php if ($category == "all") echo "selected" ?>>All</option>
-                        <option value="dataset" <?php if ($category == "dataset") echo "selected" ?>>Dataset</option>
-                        <option value="course" <?php if ($category == "course") echo "selected" ?>>Course</option>
-                        <option value="paper" <?php if ($category == "paper") echo "selected" ?>>Paper</option>
-                    </optgroup>
-                    <optgroup label="piratebay">
-                        <option value="all" <?php if ($category == "all") echo "selected" ?>>All</option>
-                        <option value="music" <?php if ($category == "music") echo "selected" ?>>Music</option>
-                        <option value="video" <?php if ($category == "video") echo "selected" ?>>Video</option>
-                        <option value="application" <?php if ($category == "application") echo "selected" ?>>Application</option>
-                        <option value="game" <?php if ($category == "game") echo "selected" ?>>Game</option>
-                        <option value="yyy" <?php if ($category == "yyy") echo "selected" ?>>YYY</option>
-                        <option value="other" <?php if ($category == "other") echo "selected" ?>>Other</option>
-                    </optgroup>
-                </select>
-            </div>
+                <div class="inline-block margin-top-20">
+                    <label class="label block" for="category">Category</label>
+                    <select class="second-select" name="category">
+                        <optgroup label="academic-torrents">
+                            <option value="all" <?php if ($category == "all")
+                        echo "selected" ?>>All</option>
+                            <option value="dataset" <?php if ($category == "dataset")
+                        echo "selected" ?>>Dataset</option>
+                            <option value="course" <?php if ($category == "course")
+                        echo "selected" ?>>Course</option>
+                            <option value="paper" <?php if ($category == "paper")
+                        echo "selected" ?>>Paper</option>
+                        </optgroup>
+                        <optgroup label="piratebay">
+                            <option value="all" <?php if ($category == "all")
+                        echo "selected" ?>>All</option>
+                            <option value="music" <?php if ($category == "music")
+                        echo "selected" ?>>Music</option>
+                            <option value="video" <?php if ($category == "video")
+                        echo "selected" ?>>Video</option>
+                            <option value="application" <?php if ($category == "application")
+                        echo "selected" ?>>Application
+                            </option>
+                            <option value="game" <?php if ($category == "game")
+                        echo "selected" ?>>Game</option>
+                            <option value="yyy" <?php if ($category == "yyy")
+                        echo "selected" ?>>YYY</option>
+                            <option value="other" <?php if ($category == "other")
+                        echo "selected" ?>>Other</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <?php
+                    if ($site == "rarbg" || $site == "kiwi_torrent_research") {
+                        echo "<div class=\"inline-block margin-top-20\">";
+                        echo "<label class=\"label block\" for=\"sort_by\">Sort By</label>";
+                        echo "<select name=\"sort_by\">";
+                        echo "<option value=\"title\"" . ($sort_by == "title" ? "selected" : "") . ">title</option>";
+                        echo "<option value=\"size\"" . ($sort_by == "size" ? "selected" : "") . "> size</option>";
+                        echo "</select>";
+                        echo "</div>";
+                    }
+                    ?>
+
         </div>
     </form>
 
@@ -71,7 +105,7 @@ switch ($site) {
 
     case "yts":
         include "provider/yts.php";
-        $results = get_yts_results($query);
+        $results = get_yts_results($query, $page);
         print_yts_torrent_results($results, $query);
         break;
 
@@ -92,39 +126,38 @@ switch ($site) {
         $response = file_get_contents($_1337x_url);
         $results = get_1337x_results($response);
         print_1337x_results($results, $query);
+        for ($i = 1; $i <= 5; $i++) {
+            echo "<a href=\"search.php?query=$query&site=1337x&page=$i\">$i</a>";
+        }
         break;
 
     case "rarbg":
         include "provider/rarbg.php";
-        $results = get_rarbg_results($query);
+        $sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : "title";
+        $results = get_rarbg_results($query, $sort_by);
         print_rarbg_results($results, $query);
         break;
 
     case "kiwi_torrent_research":
         include "provider/kiwi_torrent_research.php";
-        $results = get_kiwi_torrent_research_results($query);
+        $results = get_kiwi_torrent_research_results($query, $sort_by);
         print_kiwi_torrent_research_results($results, $query);
         break;
 
     case "eztvx":
         include "provider/eztvx.php";
         include "omdbapi.php";
-        $omdb_results = get_omdbapi_details($query);
-        $imdb_id = get_imdb_id($omdb_results);
-        if ($imdb_id != "no tv series exist") {
-            $results = get_eztvx_results($imdb_id);
+        if ($page == null || $page == 1) {
+            $omdb_results = get_omdbapi_details($query);
+            $query = get_imdb_id($omdb_results);
             print_omdbapi_details($omdb_results);
-            print_eztvx_results($results, $query);
-        } else {
-            echo " <span style=\"color: red;\"> $imdb_id on '$query', try different keyword </span> ";
         }
-
+        $results = get_eztvx_results($query);
+        print_eztvx_results($results, $query);
         break;
 }
 
-?>
+echo "<div class=\"margin-bottom-100\"></div>";
 
-<?php
 include_once "misc/footer.php";
-
 ?>

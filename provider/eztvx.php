@@ -11,12 +11,12 @@ function get_eztvx_results($query)
     global $page;
     $url = "https://eztvx.to/api/get-torrents?imdb_id=$query&page=$page";
     $json = file_get_contents($url);
-    $json_results =  json_decode($json, true);
+    $json_results = json_decode($json, true);
 
     $store_results = array();
 
     if ($json_results["torrents_count"] !== 0) {
-        $store_results  = array("torrents_count" => $json_results["torrents_count"]);
+        $store_results = array("torrents_count" => $json_results["torrents_count"]);
         $results = $json_results["torrents"];
         foreach ($results as $result) {
             $title = $result["title"];
@@ -93,13 +93,16 @@ function print_eztvx_results($results, $query)
         }
         echo "<div class=\"margin-bottom-50\"></div>";
 
+        // following code is running everytime, which is does not need to.
         $pages = ceil($results["torrents_count"] / 30);
-        echo "<div style=\"word-break: break-word;\" class=\"flex-row-center\">";
+        echo "<div class=\"lnline-block text-align-ceter\" style=\"line-height: 2;\">";
         for ($i = 2; $i <= $pages; $i++) {
-            echo "<a style=\"margin-left: 15px;\" href=\"./search.php?query=$query&site=eztvx&page=$i\">$i</a>";
+            if ($i < 10) {
+                $i = str_pad($i, 2, "0", STR_PAD_LEFT);
+            }
+            echo "<a style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query=$query&site=eztvx&page=$i\">$i</a>";
         }
         echo "</div>";
-        echo "<div class=\"margin-bottom-100\"></div>";
     } else {
         print_no_result_text($query);
     }

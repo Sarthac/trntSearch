@@ -2,7 +2,7 @@
 
 include "misc/utils.php";
 $config = require "config.php";
-$_1337x_url = "https://1337x.to/search/$query/1/";
+$_1337x_url = "https://1337x.to/search/$query/$page/";
 
 
 function get_1337x_results($response)
@@ -79,7 +79,6 @@ function print_1337x_results($results, $query)
 
             echo "</div>";
         }
-        echo "<div class=\"margin-bottom-100\"></div>";
     } else {
         print_no_result_text($query);
     }

@@ -1,7 +1,7 @@
 <?php
 require "misc/utils.php";
 $config = require_once "config.php"
-?>
+    ?>
 
 <?php
 // Connect to the database
@@ -43,12 +43,16 @@ $row = null;
 
 // print_r($results->fetchArray(SQLITE3_ASSOC));
 // $query = $_REQUEST["query"];
-function get_rarbg_results($query)
+function get_rarbg_results($query, $sort_by)
 {
     global $config;
     $db = new SQLite3('assets/rarbg_db.sqlite');
-    $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%')";
 
+    if ($sort_by == "title") {
+        $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%')";
+    } elseif ($sort_by == "size") {
+        $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%') ORDER BY size DESC";
+    }
     $db_results = $db->query($db_query);
     $row = $db_results->fetchArray(SQLITE3_ASSOC);
     $results = array();
@@ -125,7 +129,6 @@ function print_rarbg_results($results, $query)
             echo "</table>";
             echo "</div>";
         }
-        echo "<div class=\"margin-bottom-100\"></div>";
     } else {
         print_no_result_text($query);
     }

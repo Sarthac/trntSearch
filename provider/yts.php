@@ -3,9 +3,9 @@ include "misc/utils.php";
 $config = require_once "config.php";
 
 
-function get_yts_results($query)
+function get_yts_results($query, $page)
 {
-    $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
+    $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count&page=$page";
     global $config;
 
     $results3 = array();
@@ -14,9 +14,10 @@ function get_yts_results($query)
         if ($response === false) {
             throw new Exception("yts.mx is down");
         }
-        $json_results =  json_decode($response, true);
+        $json_results = json_decode($response, true);
         if ($json_results["status"] == "ok" && $json_results["data"]["movie_count"] != 0) {
             $items = $json_results["data"]["movies"];
+            $movie_count = ["total" => $json_results["data"]["movie_count"]];
             foreach ($items as $item) {
                 $results = array();
                 $results2 = array();
@@ -78,6 +79,7 @@ function get_yts_results($query)
                     )
                 );
             }
+            $results3 = array_merge($results3, $movie_count);
         }
     } catch (Exception $e) {
         echo "An error occurred: " . $e->getMessage();
@@ -89,7 +91,7 @@ function get_id_by_name($query)
 {
     $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
     $response = file_get_contents($url);
-    $json_results =  json_decode($response, true);
+    $json_results = json_decode($response, true);
     if ($json_results["status"] == "ok" && $json_results["data"]["movie_count"] != 0) {
         return $json_results["data"]["movies"][0]["id"];
     }
@@ -180,7 +182,7 @@ function print_yts_torrent_results($results, $query)
     $libremdb_instance = get_instance($config->libremdb_instances);
     if ($total != 0) {
 
-        print_total_results($total);
+        print_total_results($total - 1);
         foreach ($results as $result) {
 
             foreach ($result["data"] as $value) {
@@ -200,8 +202,8 @@ function print_yts_torrent_results($results, $query)
                 echo "<div class=\"flex-column-center\">";
                 echo "<img src=\"proxy/image_proxy.php?url=$img\">";
                 echo "<div class=\"yts-link\">";
-                echo (!empty($yt_trailer_code)) ? "<a style=\"margin-right : 10px;\" class=\"overlay \" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">YT Trailer</a>" : "No Trailer";
-                echo "<a class=\"overlay \" href=\"suggestions.php?id=$id\" >Similar Movies</a>";
+                echo (!empty($yt_trailer_code)) ? "<a style=\"margin-right : 10px;\" class=\"btn \" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">YT Trailer</a>" : "No Trailer";
+                echo "<a class=\"btn \" href=\"suggestions.php?id=$id\" >Similar Movies</a>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class=\"t-width\">";
@@ -260,6 +262,12 @@ function print_yts_torrent_results($results, $query)
             echo "</div>";
             echo "</div>";
         }
+        $pages = ceil($results["total"] / 20);
+        echo "<div class=\"flex-row-center\">";
+        for ($i = 2; $i <= $pages; $i++) {
+            echo "<a style=\"margin-left: 25px;\" href=\"./search.php?query=$query&site=yts&page=$i\">$i</a>";
+        }
+        echo "</div>";
     } else {
         print_no_result_text($query);
     }

@@ -2,7 +2,7 @@
 require 'misc/utils.php';
 $config = require_once "config.php";
 
-function get_kiwi_torrent_research_results($query)
+function get_kiwi_torrent_research_results($query, $sort_by)
 {
     $kiwi_torrent_research_sqlite = 'assets/dump_30_04_2023.sqlite';
     global $config;
@@ -10,6 +10,12 @@ function get_kiwi_torrent_research_results($query)
     if (file_exists($kiwi_torrent_research_sqlite)) {
         $db = new SQLite3('assets/dump_30_04_2023.sqlite');
         $db_query = "SELECT infohash,name,size,uploaded,num_files FROM torrents WHERE LOWER(name) LIKE LOWER('%$query%')";
+
+        if ($sort_by == "title") {
+            $db_query = "SELECT infohash,name,size,uploaded,num_files FROM torrents WHERE LOWER(name) LIKE LOWER('%$query%')";
+        } elseif ($sort_by == "size") {
+            $db_query = "SELECT infohash,name,size,uploaded,num_files FROM torrents WHERE LOWER(name) LIKE LOWER('%$query%') ORDER BY size DESC";
+        }
 
         $db_results = $db->query($db_query);
         $row = $db_results->fetchArray(SQLITE3_ASSOC);
@@ -42,7 +48,6 @@ function get_kiwi_torrent_research_results($query)
     } else {
         $results = ["title" => "no sqlite file exist"];
     }
-    
     return $results;
 }
 
