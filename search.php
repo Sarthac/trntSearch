@@ -147,12 +147,20 @@ switch ($site) {
     case "eztvx":
         include "provider/eztvx.php";
         include "omdbapi.php";
-        if ($page == null || $page == 1) {
-            $omdb_results = get_omdbapi_details($query);
-            $query = get_imdb_id($omdb_results);
-            print_omdbapi_details($omdb_results);
+        $cookie_name = convert_whole_string($query);
+        if (empty($_COOKIE[$cookie_name])) {
+            $imdb_id = get_imdb_id($query);
+            if (is_string($imdb_id)) { // Ensure get_imdb_id returns a valid value
+                setcookie($cookie_name, $imdb_id, time() + 86400 * 1, "/","",false,true);
+                // Since cookies are not immediately available after setting them,
+                // we can use the $imdb_id variable directly for the current request
+                $_COOKIE[$cookie_name] = $imdb_id;
+            } else {
+                echo "Error: The show you entered may be misspelled or does not exist.";
+                break;
+            }
         }
-        $results = get_eztvx_results($query);
+        $results = get_eztvx_results($_COOKIE[$cookie_name]);
         print_eztvx_results($results, $query);
         break;
 }

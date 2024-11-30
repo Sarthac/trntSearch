@@ -10,7 +10,8 @@ return (object) array(
     // randomly select invidious instance so that one instance won't get flooded with user requests
     "invidious_instances" => array(
         "https://invidious.jing.rocks",
-        "https://inv.nadeko.net"
+        "https://inv.nadeko.net",
+        "https://invidious.nerdvpn.de"
     ),
 
     // the following array is for tor-instance, uncommet to use it for tor-instance. don't forget to commet above array
@@ -34,8 +35,6 @@ return (object) array(
         "https://libremdb.pussthecat.org",
         "https://libremdb.lunar.icu",
         "https://imdb.nerdvpn.de"
-
-
     ),
 
     // the following array is for tor-instance, uncommet to use it for tor-instance. don't forget to commet above array

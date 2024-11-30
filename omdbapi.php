@@ -49,7 +49,7 @@ function get_omdbapi_details($query)
 function print_omdbapi_details($results)
 {
     $config = require_once "config.php";
-    $libremdb_instance = get_instance($config->libremdb_instances);
+    $libremdb_instance = get_libremdb_instance($config->libremdb_instances);
     if ($results["Response"] != "False") {
 
         $title = $results["Title"];
@@ -87,12 +87,15 @@ function print_omdbapi_details($results)
 
 function get_imdb_id($results)
 {
-    if ($results["Response"] != "False") {
+    global $query, $url;
+    $omdbapi_response = file_get_contents($url);
+    $omdbapi_json_data = json_decode($omdbapi_response, true);
+    if ($omdbapi_json_data["Response"] != "False") {
 
-        $id = $results["imdbID"];
+        $id = $omdbapi_json_data["imdbID"];
         $id = str_replace("tt", "", $id);
         return $id;
     } else {
-        return "no tv series exist";
+        return 0;
     }
 }

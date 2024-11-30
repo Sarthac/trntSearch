@@ -6,10 +6,10 @@ require "misc/utils.php";
 
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
-function get_eztvx_results($query)
+function get_eztvx_results($query_id)
 {
     global $page;
-    $url = "https://eztvx.to/api/get-torrents?imdb_id=$query&page=$page";
+    $url = "https://eztvx.to/api/get-torrents?imdb_id=$query_id&page=$page";
     $json = file_get_contents($url);
     $json_results = json_decode($json, true);
 
@@ -52,15 +52,14 @@ function print_eztvx_results($results, $query)
         print_total_results($total - 1); // -1 because it count "torrents_count" as a torrent which is not
         foreach ($results as $result) {
             if (isset($result['title'])) {
-                $title = $result['title'];
-                $seeds = $result['seeds'];
+                $title = htmlspecialchars($result['title']);
+                $seeds = (int) $result['seeds'];
                 $magnet = $result['magnet'];
                 $date = $result['date'];
                 $date = date("Y-m-d H:i:s", $date);
                 $size = human_filesize($result['size']);
                 $img = $result['img'];
                 $img = "https:" . $img;
-
                 echo "<div class=\"margin-bottom-50\">";
                 echo "<img src=\"proxy/image_proxy.php?url=$img\" alt=\"$query image\">";
                 echo "<h2>$title</h2>";
@@ -100,7 +99,7 @@ function print_eztvx_results($results, $query)
             if ($i < 10) {
                 $i = str_pad($i, 2, "0", STR_PAD_LEFT);
             }
-            echo "<a style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query=$query&site=eztvx&page=$i\">$i</a>";
+            echo "<a style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query={$query}&site=eztvx&page=$i\">$i</a>";
         }
         echo "</div>";
     } else {

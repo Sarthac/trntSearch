@@ -1,15 +1,18 @@
-
 <?php
 
 function print_total_results($total)
 {
-    echo ($total > 1) ? "<span class=\"found-results\"> Found " . $total . " results </span>" :  "<span class=\"found-results\"> Found " . $total . " result </span>";
+    echo ($total > 1) ? "<span class=\"found-results\"> Found " . $total . " results </span>" : "<span class=\"found-results\"> Found " . $total . " result </span>";
 }
 
-function get_instance($array)
+function get_invidious_instance($instances)
 {
-    $result = random_int(0, count($array) - 1);
-    return $array[$result];
+    return (count($instances) > 0) ? $instances[array_rand($instances)] : "https://www.youtube.com";
+}
+
+function get_libremdb_instance($instances)
+{
+    return (count($instances) > 0) ? $instances[array_rand($instances)] : "https://www.imdb.com";
 }
 
 function print_no_result_text($query)
@@ -26,6 +29,11 @@ function minutesToTime($minutes)
 function replace_chars($str)
 {
     return str_replace(array('-', '_'), ' ', $str);
+}
+
+function convert_whole_string($str)
+{
+    return str_replace(' ', '_', $str);
 }
 
 function replace_dot($str)
@@ -66,7 +74,7 @@ function request($url)
 
 function human_filesize($bytes, $dec = 2)
 {
-    $size   = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+    $size = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
     $factor = floor((strlen($bytes) - 1) / 3);
 
     return sprintf("%.{$dec}f ", $bytes / pow(1024, $factor)) . @$size[$factor];

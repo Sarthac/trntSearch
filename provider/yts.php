@@ -178,8 +178,8 @@ function print_yts_torrent_results($results, $query)
 {
     global $config;
     $total = count($results);
-    $invidious_instance = get_instance($config->invidious_instances);
-    $libremdb_instance = get_instance($config->libremdb_instances);
+    $invidious_instance = get_invidious_instance($config->invidious_instances);
+    $libremdb_instance = get_libremdb_instance($config->libremdb_instances);
     if ($total != 0) {
 
         print_total_results($total - 1);
