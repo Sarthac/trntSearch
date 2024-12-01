@@ -3,6 +3,7 @@
 $site = isset($_REQUEST["site"]) ? $_REQUEST["site"] : null;
 $suggestions = isset($_REQUEST["suggestions"]) ? $_REQUEST["suggestions"] : null;
 $page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
+$sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : null;
 
 $results = array();
 
@@ -38,12 +39,12 @@ if (isset($suggestions)) {
 
         case "rarbg":
             include "provider/rarbg.php";
-            $results = get_rarbg_results($query);
+            $results = get_rarbg_results($query, $sort_by, $page);
             break;
 
         case "kiwi_torrent_research":
             include "provider/kiwi_torrent_research.php";
-            $results = get_kiwi_torrent_research_results($query);
+            $results = get_kiwi_torrent_research_results($query, $sort_by, $page);
             break;
 
         case "eztvx":
