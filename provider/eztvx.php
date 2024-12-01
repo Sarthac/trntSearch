@@ -94,12 +94,12 @@ function print_eztvx_results($results, $query)
 
         // following code is running everytime, which is does not need to.
         $pages = ceil($results["torrents_count"] / 30);
-        echo "<div class=\"lnline-block text-align-ceter\" style=\"line-height: 2;\">";
+        echo "<div class=\"lnline-block text-align-center\">";
         for ($i = 2; $i <= $pages; $i++) {
             if ($i < 10) {
                 $i = str_pad($i, 2, "0", STR_PAD_LEFT);
             }
-            echo "<a style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query={$query}&site=eztvx&page=$i\">$i</a>";
+            echo "<a  class=\"" . ($page == $i ? "active" : "") . "\"style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query=" . urlencode($query) . "&site=eztvx&page=$i\">$i</a>";
         }
         echo "</div>";
     } else {

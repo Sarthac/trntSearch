@@ -43,22 +43,25 @@ $row = null;
 
 // print_r($results->fetchArray(SQLITE3_ASSOC));
 // $query = $_REQUEST["query"];
-function get_rarbg_results($query, $sort_by)
+function get_rarbg_results($query, $sort_by, $page_number, $results_per_page = 20)
 {
     global $config;
     $db = new SQLite3('assets/rarbg_db.sqlite');
+    $offset = ($page_number - 1) * $results_per_page;
+    $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%')";
 
     if ($sort_by == "title") {
-        $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%')";
+        $db_query .= "";
     } elseif ($sort_by == "size") {
-        $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%') ORDER BY size DESC";
+        $db_query .= " ORDER BY size DESC";
     }
+    $db_query .= " LIMIT $results_per_page OFFSET $offset";
+
     $db_results = $db->query($db_query);
     $row = $db_results->fetchArray(SQLITE3_ASSOC);
     $results = array();
 
-    $counter = 0;
-    while ($counter < 50 && $row = $db_results->fetchArray(SQLITE3_ASSOC)) {
+    while ($row) {
         $hash = $row["hash"];
         $title = replace_dot($row["title"]);
         $date = $row["dt"];
@@ -77,13 +80,12 @@ function get_rarbg_results($query, $sort_by)
                 "magnet" => $magnet
             )
         );
-
-        $counter += 1;
+        $row = $db_results->fetchArray(SQLITE3_ASSOC);
     }
     return $results;
 }
 
-function print_rarbg_results($results, $query)
+function print_rarbg_results($results, $query, $page_number)
 {
 
     $total = count($results);
@@ -129,6 +131,13 @@ function print_rarbg_results($results, $query)
             echo "</table>";
             echo "</div>";
         }
+
+        echo "<div class=\"lnline-block text-align-center\">";
+        for ($i = 2; $i <= 5; $i++) {
+            echo "<a  class=\"" . ($page_number == $i ? "active" : "") . "\"style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query=" . urlencode($query) . "&site=rarbg&sort_by={$sort_by}&page=$i\">$i</a>";
+        }
+        echo "</div>";
+
     } else {
         print_no_result_text($query);
     }

@@ -341,7 +341,13 @@ h2 {
 }
 
 a:hover {
-    text-decoration: var(--foreground-75) wavy underline;
+    text-decoration: underline var(--foreground-100) 2px;
+    text-underline-offset: 6px;
+}
+
+.active {
+    border-bottom: var(--foreground-100) 2px solid;
+
 }
 
 
@@ -377,7 +383,7 @@ h1 {
 
 }
 
-.text-align-ceter {
+.text-align-center {
     text-align: center;
 }
 

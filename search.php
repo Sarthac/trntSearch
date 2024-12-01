@@ -106,7 +106,7 @@ switch ($site) {
     case "yts":
         include "provider/yts.php";
         $results = get_yts_results($query, $page);
-        print_yts_torrent_results($results, $query);
+        print_yts_torrent_results($results, $query, $page);
         break;
 
     case "academic_torrents":
@@ -134,14 +134,16 @@ switch ($site) {
     case "rarbg":
         include "provider/rarbg.php";
         $sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : "title";
-        $results = get_rarbg_results($query, $sort_by);
-        print_rarbg_results($results, $query);
+        $results = get_rarbg_results($query, $sort_by, $page);
+        print_rarbg_results($results, $query, $page);
         break;
 
     case "kiwi_torrent_research":
         include "provider/kiwi_torrent_research.php";
-        $results = get_kiwi_torrent_research_results($query, $sort_by);
-        print_kiwi_torrent_research_results($results, $query);
+        // $results = get_kiwi_torrent_research_results($query, $sort_by);
+        // print_kiwi_torrent_research_results($results, $query,$page);
+        $results = get_kiwi_torrent_research_results($query, $sort_by, $page);
+        print_kiwi_torrent_research_results($results, $sort_by, $query, $page);
         break;
 
     case "eztvx":

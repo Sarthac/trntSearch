@@ -174,7 +174,7 @@ function get_suggestions($id)
     }
 }
 
-function print_yts_torrent_results($results, $query)
+function print_yts_torrent_results($results, $query, $page)
 {
     global $config;
     $total = count($results);
@@ -264,8 +264,12 @@ function print_yts_torrent_results($results, $query)
         }
         $pages = ceil($results["total"] / 20);
         echo "<div class=\"flex-row-center\">";
+        echo "<div class=\"lnline-block text-align-center\">";
         for ($i = 2; $i <= $pages; $i++) {
-            echo "<a style=\"margin-left: 25px;\" href=\"./search.php?query=$query&site=yts&page=$i\">$i</a>";
+            if ($i < 10) {
+                $i = str_pad($i, 2, "0", STR_PAD_LEFT);
+            }
+            echo "<a  class=\"" . ($page == $i ? "active" : "") . "\"style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query=" . urlencode($query) . "&site=yts&page=$i\">$i</a>";
         }
         echo "</div>";
     } else {
