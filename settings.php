@@ -1,7 +1,7 @@
 <?php
 include("misc/header.php");
-$request = !empty($_REQUEST["request"]) ? $_REQUEST["request"] : "get";
-$theme = !empty($_REQUEST["theme"]) ? $_REQUEST["theme"] : "dark";
+$request = isset($_REQUEST["request"]) ? $_REQUEST["request"] : "get";
+$theme = isset($_REQUEST["theme"]) ? $_REQUEST["theme"] : "dark";
 ?>
 
 <head>

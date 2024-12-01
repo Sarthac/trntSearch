@@ -24,7 +24,7 @@ $request = empty($_COOKIE["request"]) ? "get" : $_COOKIE["request"];
                 <img src="./assets/search.png" alt="search-icon">
             </button>
         </div>
-        <div class="wrap-dropdown">
+        <div class="scrollable padding-bottom-10">
             <div class="inline-block margin-top-20">
                 <label class="label block" for="provider">Provider</label>
                 <select name="site">
