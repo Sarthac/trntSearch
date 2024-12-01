@@ -23,7 +23,7 @@ $sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : null;
                 <img src="./assets/search.png" alt="search-icon">
             </button>
         </div>
-        <div>
+        <div class="wrap-dropdown">
             <div class="inline-block margin-top-20">
                 <label class="label block" for="provider">Provider</label>
                 <select name="site">
@@ -151,7 +151,7 @@ switch ($site) {
         if (empty($_COOKIE[$cookie_name])) {
             $imdb_id = get_imdb_id($query);
             if (is_string($imdb_id)) { // Ensure get_imdb_id returns a valid value
-                setcookie($cookie_name, $imdb_id, time() + 86400 * 1, "/","",false,true);
+                setcookie($cookie_name, $imdb_id, time() + 86400 * 1, "/", "", false, true);
                 // Since cookies are not immediately available after setting them,
                 // we can use the $imdb_id variable directly for the current request
                 $_COOKIE[$cookie_name] = $imdb_id;
