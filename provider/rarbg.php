@@ -85,7 +85,7 @@ function get_rarbg_results($query, $sort_by, $page_number, $results_per_page = 2
     return $results;
 }
 
-function print_rarbg_results($results, $query, $page_number)
+function print_rarbg_results($results, $query, $sort_by, $page_number)
 {
 
     $total = count($results);

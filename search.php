@@ -135,7 +135,7 @@ switch ($site) {
         include "provider/rarbg.php";
         $sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : "title";
         $results = get_rarbg_results($query, $sort_by, $page);
-        print_rarbg_results($results, $query, $page);
+        print_rarbg_results($results, $query, $sort_by, $page);
         break;
 
     case "kiwi_torrent_research":
