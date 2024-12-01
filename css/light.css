@@ -1,0 +1,15 @@
+:root {
+
+    --background-color: #ffffff;
+    --input-background: #ececec;
+    --line: rgba(0, 0, 0, 0.25);
+    --foreground-100: rgb(0, 0, 0);
+    --foreground-75: rgba(0, 0, 0, 0.75);
+    --foreground-50: rgba(0, 0, 0, 0.5);
+    --foreground-25: rgba(0, 0, 0, 0.25);
+    --foreground-10: rgba(0, 0, 0, 0.1);
+    --border-radius: 5px;
+    --line-height: 1.4;
+
+    color-scheme: light;
+}
