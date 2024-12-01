@@ -1,5 +1,7 @@
 <?php
 require_once 'misc/header.php';
+
+$request = empty($_COOKIE["request"]) ? "get" : $_COOKIE["request"];
 ?>
 
 <head>
@@ -8,7 +10,7 @@ require_once 'misc/header.php';
 
 <body>
 
-    <form class="search-container" action="search.php" method="get" autocomplete="off">
+    <form class="search-container" action="search.php" method=<?php echo $request ?> autocomplete="off">
         <div class="input-wrap">
             <input class="code" type="text" name="query" placeholder="Search" autofocus>
             <button class="submit-button" type="submit">

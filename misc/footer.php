@@ -1,6 +1,6 @@
 <?php
 $config = require "config.php"
-?>
+    ?>
 
 
 <div class="footer">
@@ -13,6 +13,7 @@ $config = require "config.php"
         <a href="instances.php">Tor & I2P</a>
         <a target="_blank" href="https://github.com/sarthac/trntSearch">Source</a>
         <a href="guide.php">Guide</a>
+        <a href="settings.php">Settings</a>
     </div>
 
 </div>

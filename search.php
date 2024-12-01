@@ -7,6 +7,7 @@ $category = isset($_REQUEST["category"]) ? $_REQUEST["category"] : null;
 $page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
 $sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : null;
 
+$request = empty($_COOKIE["request"]) ? "get" : $_COOKIE["request"];
 ?>
 
 
@@ -16,7 +17,7 @@ $sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : null;
 
 <body>
 
-    <form class="sub-search-container" action="search.php" method="get" autocomplete="off">
+    <form class="sub-search-container" action="search.php" method=<?php echo $request ?> autocomplete="off">
         <div class="input-wrap">
             <input class="code" type="text" name="query" <?php echo "value=\"$query\"" ?>>
             <button class="submit-button" type="submit">

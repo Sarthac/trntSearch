@@ -8,3 +8,4 @@
     <meta name="referrer" content="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/<?php echo (!empty($_COOKIE["theme"])) ? $_COOKIE["theme"] : "dark" ?>.css">
