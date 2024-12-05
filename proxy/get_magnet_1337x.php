@@ -1,10 +1,10 @@
 <?php
-$config = require "./config.php";
+$config = require "../config.php";
 require "misc/utils.php";
 
 $url = $_REQUEST["url"];
 
-$response = request($url, $config->curl_settings);
+$response = request($url);
 $xpath = get_xpath($response);
 
 $magnet = $xpath->query("//main/div/div/div/div/div/ul/li/a/@href")[0]->textContent;
