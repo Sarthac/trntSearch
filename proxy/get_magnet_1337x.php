@@ -1,6 +1,6 @@
 <?php
 $config = require "../config.php";
-require "misc/utils.php";
+require "../misc/utils.php";
 
 $url = $_REQUEST["url"];
 
