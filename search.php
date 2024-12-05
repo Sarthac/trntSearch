@@ -7,7 +7,7 @@ $category = isset($_REQUEST["category"]) ? $_REQUEST["category"] : null;
 $page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : 1;
 $sort_by = isset($_REQUEST["sort_by"]) ? $_REQUEST["sort_by"] : null;
 
-$request = empty($_COOKIE["request"]) ? "get" : $_COOKIE["request"];
+$request = empty($_COOKIE["request"]) ? "post" : $_COOKIE["request"];
 ?>
 
 

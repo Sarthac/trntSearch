@@ -1,12 +1,10 @@
 <?php
 require_once 'misc/header.php';
 
-$request = empty($_COOKIE["request"]) ? "get" : $_COOKIE["request"];
+$request = empty($_COOKIE["request"]) ? "post" : $_COOKIE["request"];
 ?>
 
-<head>
-    <title>trntSearch</title>
-</head>
+<title>trntSearch</title>
 
 <body>
 

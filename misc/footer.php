@@ -1,11 +1,14 @@
 <?php
-$config = require "config.php"
-    ?>
+$config = require "config.php";
+
+?>
 
 
 <div class="footer">
     <div>
-        <h3><a href="./"><?php echo $config->project_name ?></a></h3>
+        <h3><a href="./"><?php echo (!empty($_COOKIE["project_name"])) ? $_COOKIE["project_name"] : $config->project_name ?>
+            </a>
+        </h3>
     </div>
 
     <div class="scrollable">

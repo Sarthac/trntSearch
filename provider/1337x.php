@@ -16,7 +16,7 @@ function get_1337x_results($response)
     foreach ($xpath->query("//table/tbody/tr") as $result) {
         $name = $xpath->evaluate(".//td[@class='coll-1 name']/a", $result)[1]->textContent;
         $name = str_replace(".", " ", $name);
-        $magnet = "./get_magnet_1337x.php?url=https://1337x.to" . $xpath->evaluate(".//td[@class='coll-1 name']/a/@href", $result)[1]->textContent;
+        $magnet = "/proxy/get_magnet_1337x.php?url=https://1337x.to" . $xpath->evaluate(".//td[@class='coll-1 name']/a/@href", $result)[1]->textContent;
         $size_unformatted = explode(" ", $xpath->evaluate(".//td[contains(@class, 'coll-4 size')]", $result)[0]->textContent);
         $size = $size_unformatted[0] . " " . preg_replace("/[0-9]+/", "", $size_unformatted[1]);
         $seeders = $xpath->evaluate(".//td[@class='coll-2 seeds']", $result)[0]->textContent;

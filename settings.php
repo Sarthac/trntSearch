@@ -1,37 +1,83 @@
 <?php
 include("misc/header.php");
-$request = isset($_REQUEST["request"]) ? $_REQUEST["request"] : "get";
-$theme = isset($_REQUEST["theme"]) ? $_REQUEST["theme"] : "dark";
+include("misc/utils.php");
+$config = require_once("config.php");
+
+if (isset($_REQUEST["request"])) {
+    $request = $_REQUEST["request"];
+    setcookie("request", $request, time() + 86400 * 30, "/");
+
+} else {
+    $request = "post";
+}
+
+if (isset($_REQUEST["theme"])) {
+    $theme = $_REQUEST["theme"];
+    setcookie("theme", $theme, time() + 86400 * 30, "/");
+
+}
+
+if (!empty($_COOKIE["request"])) {
+    $request_cookie = $_COOKIE["request"];
+}
+if (!empty($_COOKIE["theme"])) {
+    $theme_cookie = $_COOKIE["theme"];
+}
+
+
+if (isset($_REQUEST["project_name"])) {
+    $project_name = $_REQUEST["project_name"];
+
+    //validating name and length
+    if (strlen($project_name) > 0 && strlen($project_name) <= 25) {
+        $project_name = valid_name($project_name);
+        setcookie("project_name", $project_name, time() + 86400 * 30, "/");
+    } else {
+        $project_name = $config->$project_name;
+    }
+}
+
+
 ?>
 
-<head>
-    <title> Settings</title>
-</head>
+
+<title> Settings</title>
+
 
 <body>
     <h1 class="margin-bottom-20 margin-top-50">Settings</h1>
-    <form action="" method=<?php echo $request ?>>
-        <div class="flex-row-space-between setting-box">
+    <form autocomplete="off" method=<?php echo $request ?>>
+        <div class="flex-row-space-between setting-box gap-10">
+            <div>
+                <h3>Change name</h3>
+                <p>Name should be no longer than 25 chars.Include alphabets and numbers</p>
+            </div>
+            <input class="input-name" name="project_name" type="text" value=<?php echo (!empty($_COOKIE["project_name"])) ? $_COOKIE["project_name"] : $config->project_name ?>>
+        </div>
+
+        <div class="flex-row-space-between setting-box  gap-10">
             <div>
                 <h3>request method</h3>
-                <p>POST hides your query from the URL and browser tab. GET includes them.</p>
+                <p>POST hides your query from the URL and browser tab. GET includes them.(set to 'get' if you intend to
+                    bookmark or share url)</p>
             </div>
             <div>
-                <select name="request" id="">
-                    <option value="get" <?php echo ($request == "get") ? "selected" : "" ?>>get</option>
-                    <option value="post" <?php echo ($request == "post") ? "selected" : "" ?>>post</option>
+                <select class="margin-0" name="request" id="">
+                    <option value="post" <?php echo ($request_cookie == "post") ? "selected" : "" ?>>post</option>
+                    <option value="get" <?php echo ($request_cookie == "get") ? "selected" : "" ?>>get
+                    </option>
                 </select>
             </div>
         </div>
-        <div class="flex-row-space-between setting-box">
+        <div class="flex-row-space-between setting-box  gap-10">
             <div>
                 <h3>theme</h3>
-                <p>change the look and feel</p>
+                <p class="margin-top-10">change the look and feel</p>
             </div>
-            <select name="theme" id="">
-                <option value="auto" <?php echo ($theme == "auto") ? "selected" : "" ?>>auto</option>
-                <option value="light" <?php echo ($theme == "light") ? "selected" : "" ?>>light</option>
-                <option value="dark" <?php echo ($theme == "dark") ? "selected" : "" ?>>dark</option>
+            <select class="margin-0" name="theme" id="">
+                <option value="dark" <?php echo ($theme_cookie == "dark") ? "selected" : "" ?>>dark </option>
+                <option value="light" <?php echo ($theme_cookie == "light") ? "selected" : "" ?>>light</option>
+                <option value="auto" <?php echo ($theme_cookie == "auto") ? "selected" : "" ?>>auto</option>
             </select>
         </div>
 
@@ -43,8 +89,6 @@ $theme = isset($_REQUEST["theme"]) ? $_REQUEST["theme"] : "dark";
 </body>
 <?php
 
-setcookie("request", $request, time() + 86400 * 30, "/");
-setcookie("theme", $theme, time() + 86400 * 30, "/");
 
 if (isset($_REQUEST["save"])) {
     header("Location: ./");

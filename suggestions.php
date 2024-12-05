@@ -111,8 +111,8 @@ function print_suggestions($results)
                 echo "<div class=\"flex-column-center\">";
                 echo "<img src=\"proxy/image_proxy.php?url=$img\">";
                 echo "<div class=\"yts-link\">";
-                echo (!empty($yt_trailer_code)) ? "<a style=\"margin-right : 10px;\" class=\"overlay \" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">YT Trailer</a>" : "No Trailer";
-                echo "<a class=\"overlay \" href=\"suggestions.php?id=$id\" >Similar Movies</a>";
+                echo (!empty($yt_trailer_code)) ? "<a style=\"margin-right : 10px;\" class=\"btn \" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">YT Trailer</a>" : "No Trailer";
+                echo "<a class=\"btn \" href=\"suggestions.php?id=$id\" >Similar Movies</a>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class=\"t-width\">";

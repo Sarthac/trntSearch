@@ -272,6 +272,7 @@ function print_yts_torrent_results($results, $query, $page)
             echo "<a  class=\"" . ($page == $i ? "active" : "") . "\"style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query=" . urlencode($query) . "&site=yts&page=$i\">$i</a>";
         }
         echo "</div>";
+        echo "</div>";
     } else {
         print_no_result_text($query);
     }

@@ -25,6 +25,10 @@ function minutesToTime($minutes)
     $minutes = $minutes % 60;
     return sprintf($hours . "h" . " " . $minutes . "m");
 }
+function valid_name($string)
+{
+    return preg_replace("/[^A-Za-z0-9 ]/", '', $string);
+}
 
 function replace_chars($str)
 {
