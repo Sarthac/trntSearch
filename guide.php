@@ -2,6 +2,17 @@
 include "misc/header.php";
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to trntSearch: A Beginner's Guide</title>
+</head>
+
+
 <style>
     h3 {
         font-size: 20px;
@@ -12,46 +23,37 @@ include "misc/header.php";
     }
 </style>
 
+<body>
+    <h1>Welcome to trntSearch: A Beginner's Guide</h1>
+    <p>If you're new to torrents and having trouble finding results on trntSearch, this guide is for you. Our platform offers a range of options to help you find what you're looking for.</p>
 
-<p>Those who are unfamiliar with torrent and getting zero results on trntSearch, here is a guide for you.</p>
+    <h2>Understanding the Options</h2>
+    <p>In the trntSearch dropdown menu, you'll find several options, including:</p>
+    <ul>
+        <li>yts</li>
+        <li>academic-torrents</li>
+        <li>1337x</li>
+        <li>piratebay</li>
+        <li>rarbg</li>
+        <li>eztvx</li>
+    </ul>
+    <p>These options represent different torrent sites that we aggregate results from. trntSearch acts as a proxy, providing you with a decluttered experience, free from ads and trackers.</p>
 
-<p>In trntSearch you find multiple option in drop down menu which are yts, academic-torrent, 1337x, piratebay, rarbg and eztvx.These are sites which you get results from them. trntSearch work as a proxy that aims to give results without ads, trackers, give you declutter experience. if you search tv series in yts it will give you 0 results because yts only provide movies.
-    here are some info on each sites.
-</p>
+    <h2>Choosing the Right Option</h2>
+    <p>To get the most out of trntSearch, it's essential to understand what each option offers. Here's a brief overview:</p>
+    <ul>
+        <li><strong>yts:</strong> Specializes in movies, ranging from 1080p to 4K, including web, Blu-ray, and 3D releases. Ideal for movie enthusiasts.</li>
+        <li><strong>academic-torrents:</strong> Offers academic-level content, including datasets and resources across various fields, such as computer science, physics, engineering, and more.</li>
+        <li><strong>piratebay & 1337x:</strong> Provide a wide range of digital media, including movies, TV shows, music, PC games, software, and more.</li>
+        <li><strong>rarbg:</strong> Focuses on streamable media, including movies and TV shows.</li>
+        <li><strong>eztvx:</strong> Exclusively offers a collection of TV shows.</li>
+    </ul>
+    <p style="padding-bottom: 40px;">By selecting the right option, you'll be able to find the content you're looking for. For example, if you're searching for TV series, you may want to try eztvx or rarbg, as yts only provides movie results.</p>
+</body>
 
-<hr>
-
-
-
-<h3>yts</h3>
-<p>yts provide all sort of movies ranging from 1080p upto 4k including web, bluray and 3d. If you would like to search movies than yts is a best option to search into.
-</p>
-
-<hr>
-
-
-<h3>academic-torrents</h3>
-<p>academic-torrents provide academic level contents, wide range of datasets across various fields, including computer-science, physics, engineering and more.
-</p>
-
-<hr>
-
-
-<h3>piratebay & 1337x</h3>
-<p>both site provide all sort of digital media i.e movie, tv shows, music, pc games, software and more</p>
-
-<hr>
-
-
-<h3>rarbg</h3>
-<p>rarbg provide all stremable media i.e movie, tv shows and more</p>
-
-<hr>
+</html>
 
 
-
-<h3>eztvx</h3>
-<p style="padding-bottom: 40px;">eztvx only provide a collection of tv shows</p>
 
 
 <?php
