@@ -11,7 +11,7 @@ function get_suggestions($id)
 {
     global $config;
 
-    $url = "https://yts.mx/api/v2/movie_suggestions.json?movie_id=$id";
+    $url =  $config->yts_url . "/api/v2/movie_suggestions.json?movie_id=$id";
 
     $results3 = array();
 

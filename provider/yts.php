@@ -5,8 +5,9 @@ $config = require_once "config.php";
 
 function get_yts_results($query, $page)
 {
-    $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count&page=$page";
     global $config;
+    $url = $config->yts_url . "/api/v2/list_movies.json?query_term=$query&sort_by=like_count&page=$page";
+
 
     $results3 = array();
     try {
@@ -89,7 +90,8 @@ function get_yts_results($query, $page)
 
 function get_id_by_name($query)
 {
-    $url = "https://yts.mx/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
+    global $config;
+    $url = $config->yts_url . "/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
     $response = file_get_contents($url);
     $json_results = json_decode($response, true);
     if ($json_results["status"] == "ok" && $json_results["data"]["movie_count"] != 0) {
@@ -100,8 +102,7 @@ function get_id_by_name($query)
 function get_suggestions($id)
 {
     global $config;
-
-    $url = "https://yts.mx/api/v2/movie_suggestions.json?movie_id=$id";
+    $url = $config->yts_url . "/api/v2/movie_suggestions.json?movie_id=$id";
 
     $results3 = array();
 

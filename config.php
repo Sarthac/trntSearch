@@ -6,11 +6,11 @@ return (object) array(
     "bittorrent_trackers" => "&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce",
     "academic_torrent_trackers" => "&tr=https%3A%2F%2Facademictorrents.com%2Fannounce.php&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
     "yts_trackers" => "&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce",
-
+    "yts_url" => "https://yts.bz",
     // randomly select invidious instance so that one instance won't get flooded with user requests
     "invidious_instances" => array(
-        "https://invidious.jing.rocks",
-        "https://inv.nadeko.net",
+        "https://inv.nadeko.net/",
+        "https://yewtu.be/",
         "https://invidious.nerdvpn.de"
     ),
 
@@ -32,9 +32,8 @@ return (object) array(
     // randomly select libremdb instance so that one instance won't get flooded with user requests
     "libremdb_instances" => array(
         "https://d.opnxng.com",
-        "https://libremdb.pussthecat.org",
         "https://libremdb.lunar.icu",
-        "https://imdb.nerdvpn.de"
+        "https://libremdb.iket.me/"
     ),
 
     // the following array is for tor-instance, uncommet to use it for tor-instance. don't forget to commet above array
