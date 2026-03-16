@@ -1,5 +1,5 @@
 <?php
-include "includes/utils.php";
+require_once "includes/utils.php";
 $config = require_once "includes/config.php";
 
 
@@ -13,7 +13,7 @@ function get_yts_results($query, $page)
     try {
         $response = request($url);
         if ($response === false) {
-            throw new Exception("yts.mx is down");
+            throw new Exception("yts.bz is down or not accessible");
         }
         $json_results = json_decode($response, true);
         if ($json_results["status"] == "ok" && $json_results["data"]["movie_count"] != 0) {
@@ -185,7 +185,8 @@ function print_yts_torrent_results($results, $query, $page)
 
 
         print_total_results($total - 1);
-        foreach ($results as $result) {
+        foreach ($results as $key => $result) {
+            if ($key === "total") continue;
 
             foreach ($result["data"] as $value) {
                 $id = $value["id"];
@@ -197,15 +198,11 @@ function print_yts_torrent_results($results, $query, $page)
                 $runtime = minutesToTime($runtime);
                 $summary = $value["summary"];
                 $yt_trailer_code = $value["yt_trailer_code"];
-                $img = $value["img"];
                 $lang = $value["lang"];
 
                 echo "<div class=\"flex-row margin-bottom-100\">";
                 echo "<div class=\"flex-column-center\">";
-                echo "<img src=\"proxy/image_proxy.php?url=$img\" alt=\"$title image\">";
                 echo "<div class=\"yts-link\">";
-                echo (!empty($yt_trailer_code)) ? "<a style=\"margin-right : 10px;\" class=\"btn \" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">YT Trailer</a>" : "No Trailer";
-                echo "<a class=\"btn \" href=\"suggestions.php?id=$id\" >Similar Movies</a>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class=\"t-width\">";
@@ -227,6 +224,11 @@ function print_yts_torrent_results($results, $query, $page)
                 echo " </span>";
                 echo "<span>$year</span>";
                 echo "<a href=\"$libremdb_instance/title/$imdb_code\" target=\"_blank\">...More</a>";
+                echo "</div>";
+                // third row
+                echo "<div class=\"margin-top-15\">";
+                echo (!empty($yt_trailer_code)) ? "<a style=\"margin-right : 10px;\" class=\"btn \" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">YT Trailer</a>" : "No Trailer";
+                echo "<a class=\"btn \" href=\"suggestions.php?id=$id\" >Similar Movies</a>";
                 echo "</div>";
                 echo "</div>";
 

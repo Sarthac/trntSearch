@@ -1,8 +1,5 @@
 <?php
-require "includes/utils.php";
-?>
-
-<?php
+require_once "includes/utils.php";
 
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 

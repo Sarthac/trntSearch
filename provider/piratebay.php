@@ -1,6 +1,6 @@
 <?php
-$config = require "includes/config.php";
-require "includes/utils.php";
+require_once "includes/utils.php";
+$config = require_once "includes/config.php";
 
 function get_thepiratebay_results($query, $category)
 {
