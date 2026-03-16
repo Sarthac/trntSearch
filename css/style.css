@@ -183,16 +183,6 @@ th {
     background-color: var(--foreground-10);
 }
 
-.yts-link {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: start;
-    margin-top: 10px;
-}
-.yts-link a {
-    margin: 0 !important;
-}
 
 hr {
     border-color: var(--line);
@@ -468,6 +458,11 @@ h1 {
 .margin-0 {
     margin: 0px;
 }
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
 
 .margin-top-10 {
     margin-top: 10px;
@@ -773,12 +768,6 @@ li h3 {
 
     }
 
-
-    .yts-link {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
 
     .flex-column-center {
         display: flex;
