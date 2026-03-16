@@ -1,5 +1,5 @@
 <?php
-$config = require_once "../config.php";
+$config = require_once "../includes/config.php";
 function request($url)
 {
     global $config;
@@ -14,7 +14,7 @@ function request($url)
 $image_url = $_GET['url'];
 
 $image_domain = parse_url($image_url, PHP_URL_HOST);
-$allowed_domains = array("yts.bz", "m.media-amazon.com", "ezimg.ch");
+$allowed_domains = array("yts.bz", "img.yts.bz", "m.media-amazon.com", "ezimg.ch");
 
 
 if (in_array($image_domain, $allowed_domains)) {

@@ -121,7 +121,7 @@ function print_piratebay_results($results, $query)
             echo "</div>";
         }
 
-        $pages = ceil($results["movie_count"] / 20);
+        $pages = ceil($total / 20);
         echo "<div style=\"word-break: break-word;\" class=\"flex-row-center\">";
         for ($i = 2; $i <= $pages; $i++) {
             echo "<a style=\"margin-left: 15px;\" href=\"./search.php?query=$query&site=eztvx&page=$i\">$i</a>";

@@ -183,6 +183,17 @@ th {
     background-color: var(--foreground-10);
 }
 
+.yts-link {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: start;
+    margin-top: 10px;
+}
+.yts-link a {
+    margin: 0 !important;
+}
+
 hr {
     border-color: var(--line);
 }
@@ -602,6 +613,8 @@ li h3 {
     margin: 0px;
 }
 
+
+
 @media only screen and (max-width: 650px) {
 
     body {
@@ -763,8 +776,8 @@ li h3 {
 
     .yts-link {
         display: flex;
+        flex-direction: row;
         justify-content: center;
-
     }
 
     .flex-column-center {
