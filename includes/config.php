@@ -31,8 +31,6 @@ return (object) array(
 
     // randomly select libremdb instance so that one instance won't get flooded with user requests
     "libremdb_instances" => array(
-        "https://d.opnxng.com",
-        "https://libremdb.lunar.icu",
         "https://libremdb.iket.me/"
     ),
 
