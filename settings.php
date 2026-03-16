@@ -1,29 +1,30 @@
 <?php
-include("templates/header.php");
-include("includes/utils.php");
-$config = require_once("includes/config.php");
+$config = require_once "includes/config.php";
+require_once "includes/utils.php";
+
+$request_cookie = "get";
+if (!empty($_COOKIE["request"])) {
+    $request_cookie = $_COOKIE["request"];
+}
+
+$theme_cookie = "dark";
+if (!empty($_COOKIE["theme"])) {
+    $theme_cookie = $_COOKIE["theme"];
+}
 
 if (isset($_REQUEST["request"])) {
     $request = $_REQUEST["request"];
     setcookie("request", $request, time() + 86400 * 30, "/");
-
+    $request_cookie = $request;
 } else {
-    $request = "post";
+    $request = "get";
 }
 
 if (isset($_REQUEST["theme"])) {
     $theme = $_REQUEST["theme"];
     setcookie("theme", $theme, time() + 86400 * 30, "/");
-
+    $theme_cookie = $theme;
 }
-
-if (!empty($_COOKIE["request"])) {
-    $request_cookie = $_COOKIE["request"];
-}
-if (!empty($_COOKIE["theme"])) {
-    $theme_cookie = $_COOKIE["theme"];
-}
-
 
 if (isset($_REQUEST["project_name"])) {
     $project_name = $_REQUEST["project_name"];
@@ -32,12 +33,16 @@ if (isset($_REQUEST["project_name"])) {
     if (strlen($project_name) > 0 && strlen($project_name) <= 25) {
         $project_name = valid_name($project_name);
         setcookie("project_name", $project_name, time() + 86400 * 30, "/");
-    } else {
-        $project_name = $config->$project_name;
+        $_COOKIE["project_name"] = $project_name;
     }
 }
 
+if (isset($_REQUEST["save"])) {
+    header("Location: ./");
+    die();
+}
 
+include("templates/header.php");
 ?>
 
 
@@ -88,12 +93,6 @@ if (isset($_REQUEST["project_name"])) {
 
 </body>
 <?php
-
-
-if (isset($_REQUEST["save"])) {
-    header("Location: ./");
-    die();
-}
 
 include("templates/footer.php");
 
