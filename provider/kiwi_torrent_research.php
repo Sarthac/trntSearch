@@ -1,5 +1,4 @@
 <?php
-require 'includes/utils.php';
 $config = require_once "includes/config.php";
 
 function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $results_per_page = 20)
@@ -7,8 +6,8 @@ function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $resu
     $kiwi_torrent_research_sqlite = 'assets/dump_30_04_2023.sqlite';
     global $config;
 
-    if (file_exists($kiwi_torrent_research_sqlite)) {
-        $db = new SQLite3('assets/dump_30_04_2023.sqlite');
+    if (extension_loaded('sqlite3') && file_exists($kiwi_torrent_research_sqlite)) {
+        $db = new SQLite3($kiwi_torrent_research_sqlite);
         $offset = ($page_number - 1) * $results_per_page;
         $db_query = "SELECT infohash,name,size,uploaded,num_files FROM torrents WHERE LOWER(name) LIKE LOWER('%$query%')";
 
@@ -48,7 +47,7 @@ function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $resu
             $row = $db_results->fetchArray(SQLITE3_ASSOC);
         }
     } else {
-        $results = ["title" => "no sqlite file exist"];
+        $results = ["error" => "Something went wrong."];
     }
 
     return $results;
@@ -59,8 +58,8 @@ function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $resu
 function print_kiwi_torrent_research_results($results, $sort_by, $query, $page_number)
 {
     global $config;
-    if (isset($results["title"]) && $results["title"] == "no sqlite file exist") {
-        echo "<span style=\"color : red;\"> this server doesn't have 75gb of stoage to store kiwi-torrent-research sqlite file. visit other </span> <a href=\"instances.php\">instances</a>";
+    if (isset($results["error"])) {
+        echo "<span style=\"color : red;\">" . $results["error"] . " </span>";
     } else if (count($results) > 0) {
         // print_total_results($total_results);
 
@@ -109,6 +108,6 @@ function print_kiwi_torrent_research_results($results, $sort_by, $query, $page_n
         }
         echo "</div>";
     } else {
-        echo "No results found.";
+        print_no_result_text($query);
     }
 }

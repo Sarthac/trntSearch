@@ -1,93 +1,60 @@
 <?php
-require "includes/utils.php";
-$config = require_once "includes/config.php"
-    ?>
 
-<?php
-// Connect to the database
-$db = new SQLite3('assets/rarbg_db.sqlite');
+$config = require_once "includes/config.php";
 
-
-// Prepare the query
-// $query = "SELECT * FROM your_table";
-// $query = "iron man";
-$db_query = "SELECT title,hash,size FROM items WHERE title LIKE '%$query%'";
-
-// Execute the query
-$results = $db->query($db_query);
-$row = $results->fetchArray();
-
-// Fetch the data
-$row = null;
-
-// while ($row = $results->fetchArray()) {
-//     print_r($row);
-//     echo "<hr>";
-// }
-
-
-// while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-//     print_r($row);
-//     echo "<hr>";
-// }
-
-
-
-// $values = array();
-// while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-//     print_r($row);
-//     array_push($values,
-//     $row);
-// }
-// print_r($values);
-
-// print_r($results->fetchArray(SQLITE3_ASSOC));
-// $query = $_REQUEST["query"];
 function get_rarbg_results($query, $sort_by, $page_number, $results_per_page = 20)
 {
+    $rarbg_sqlite = 'assets/rarbg_db.sqlite';
     global $config;
-    $db = new SQLite3('assets/rarbg_db.sqlite');
-    $offset = ($page_number - 1) * $results_per_page;
-    $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%')";
+    if (extension_loaded('sqlite3') && file_exists($rarbg_sqlite)) {
+        $db = new SQLite3($rarbg_sqlite);
+        $offset = ($page_number - 1) * $results_per_page;
+        $db_query = "SELECT title,hash,size,dt,cat FROM items WHERE LOWER(title) LIKE LOWER('%$query%')";
 
-    if ($sort_by == "title") {
-        $db_query .= "";
-    } elseif ($sort_by == "size") {
-        $db_query .= " ORDER BY size DESC";
-    }
-    $db_query .= " LIMIT $results_per_page OFFSET $offset";
+        if ($sort_by == "title") {
+            $db_query .= "";
+        } elseif ($sort_by == "size") {
+            $db_query .= " ORDER BY size DESC";
+        }
+        $db_query .= " LIMIT $results_per_page OFFSET $offset";
 
-    $db_results = $db->query($db_query);
-    $row = $db_results->fetchArray(SQLITE3_ASSOC);
-    $results = array();
-
-    while ($row) {
-        $hash = $row["hash"];
-        $title = replace_dot($row["title"]);
-        $date = $row["dt"];
-        $category = $row["cat"];
-        $size = $row["size"];
-        $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $config->yts_trackers . $config->bittorrent_trackers;
-
-        array_push(
-            $results,
-            array(
-                "hash" => $hash,
-                "title" => $title,
-                "date" => $date,
-                "category" => $category,
-                "size" => $size,
-                "magnet" => $magnet
-            )
-        );
+        $db_results = $db->query($db_query);
         $row = $db_results->fetchArray(SQLITE3_ASSOC);
+        $results = array();
+
+        while ($row) {
+            $hash = $row["hash"];
+            $title = replace_dot($row["title"]);
+            $date = $row["dt"];
+            $category = $row["cat"];
+            $size = $row["size"];
+            $magnet = "magnet:?xt=urn:btih:$hash&dn=$title" . $config->yts_trackers . $config->bittorrent_trackers;
+
+            array_push(
+                $results,
+                array(
+                    "hash" => $hash,
+                    "title" => $title,
+                    "date" => $date,
+                    "category" => $category,
+                    "size" => $size,
+                    "magnet" => $magnet
+                )
+            );
+            $row = $db_results->fetchArray(SQLITE3_ASSOC);
+        }
+        return $results;
+    } else {
+        return ["error" => "Something went wrong."];
     }
-    return $results;
 }
 
 function print_rarbg_results($results, $query, $sort_by, $page_number)
 {
-
+    if (isset($results["error"])) {
+        echo "<span style=\"color : red;\">" . $results["error"] . " </span>";
+        return;
+    } 
     $total = count($results);
     if ($total != 0) {
         print_total_results($total);
@@ -142,9 +109,5 @@ function print_rarbg_results($results, $query, $sort_by, $page_number)
         print_no_result_text($query);
     }
 }
-
-
-
-
 
 ?>
