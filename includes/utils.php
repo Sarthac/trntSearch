@@ -17,7 +17,7 @@ function get_libremdb_instance($instances)
 
 function print_no_result_text($query)
 {
-    echo " <span style=\"color: red;\"> results not found on '$query', try different keyword </span> ";
+    echo " <span style=\"color: red;\"> No results were found matching <i><b>'$query'</b></i>, try something else or read the <a href=./guide.php>guide</a>. </span> ";
 }
 function minutesToTime($minutes)
 {
@@ -67,7 +67,7 @@ function get_xpath($response)
 
 function request($url)
 {
-    global $config;
+    $config = require "config.php";
 
     $ch = curl_init($url);
     curl_setopt_array($ch, $config->curl_settings);

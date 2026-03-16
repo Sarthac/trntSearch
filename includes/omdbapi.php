@@ -85,7 +85,7 @@ function print_omdbapi_details($results)
 
 
 
-function get_imdb_id($results)
+function get_imdb_id($query)
 {
     global $query, $url;
     $omdbapi_response = request($url);
