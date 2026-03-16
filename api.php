@@ -20,21 +20,20 @@ if (isset($suggestions)) {
             break;
 
         case "academic_torrents":
-            $category = strtolower($_REQUEST["category"]);
+            $category = isset($_REQUEST["category"]) ? strtolower($_REQUEST["category"]) : "all";
             include "provider/academic_torrents.php";
             $results = search_by_name($query, $category);
             break;
 
         case "piratebay":
-            $category = strtolower($_REQUEST["category"]);
+            $category = isset($_REQUEST["category"]) ? strtolower($_REQUEST["category"]) : "all";
             include "provider/piratebay.php";
             $results = get_thepiratebay_results($query, $category);
             break;
 
         case "1337x":
             include "provider/1337x.php";
-            $response = request($_1337x_url);
-            $results = get_1337x_results($response);
+            $results = get_1337x_results($query, $page);
             break;
 
         case "rarbg":
