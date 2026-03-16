@@ -1,11 +1,11 @@
 <?php
 
-$config = require_once "includes/config.php";
 
 function get_rarbg_results($query, $sort_by, $page_number, $results_per_page = 20)
 {
     $rarbg_sqlite = 'assets/rarbg_db.sqlite';
-    global $config;
+    $config = require "includes/config.php";
+    require "includes/utils.php";
     if (extension_loaded('sqlite3') && file_exists($rarbg_sqlite)) {
         $db = new SQLite3($rarbg_sqlite);
         $offset = ($page_number - 1) * $results_per_page;
@@ -24,7 +24,7 @@ function get_rarbg_results($query, $sort_by, $page_number, $results_per_page = 2
 
         while ($row) {
             $hash = $row["hash"];
-            $title = replace_dot($row["title"]);
+            $title = $row["title"];
             $date = $row["dt"];
             $category = $row["cat"];
             $size = $row["size"];

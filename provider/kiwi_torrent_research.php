@@ -1,10 +1,9 @@
 <?php
-$config = require_once "includes/config.php";
 
 function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $results_per_page = 20)
 {
     $kiwi_torrent_research_sqlite = 'assets/dump_30_04_2023.sqlite';
-    global $config;
+    $config = require "includes/config.php";
 
     if (extension_loaded('sqlite3') && file_exists($kiwi_torrent_research_sqlite)) {
         $db = new SQLite3($kiwi_torrent_research_sqlite);
@@ -25,7 +24,7 @@ function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $resu
 
         while ($row) {
             $hash = bin2hex($row["infohash"]);
-            $title = ($row["name"]);
+            $title = $row["name"];
             $size = $row["size"];
             $date = $row["uploaded"];
             $num_files = $row["num_files"];
