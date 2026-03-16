@@ -1,6 +1,6 @@
 <?php
-require "misc/utils.php";
-$config = require_once "config.php"
+require "includes/utils.php";
+$config = require_once "includes/config.php"
     ?>
 
 <?php

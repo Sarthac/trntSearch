@@ -1,6 +1,6 @@
 <?php
-require "misc/utils.php";
-$config = require "config.php";
+require "includes/utils.php";
+$config = require "includes/config.php";
 $xml = simplexml_load_file('https://academictorrents.com/database.xml');
 
 $items = $xml->channel->item;

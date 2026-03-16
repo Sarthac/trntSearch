@@ -1,5 +1,5 @@
 <?php
-require_once 'misc/header.php';
+require_once 'templates/header.php';
 
 $request = empty($_COOKIE["request"]) ? "post" : $_COOKIE["request"];
 ?>
@@ -58,6 +58,6 @@ $request = empty($_COOKIE["request"]) ? "post" : $_COOKIE["request"];
 </html>
 
 <?php
-include_once "misc/footer.php";
+include_once "templates/footer.php";
 
 ?>

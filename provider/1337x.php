@@ -1,7 +1,7 @@
 <?php
 
-include "misc/utils.php";
-$config = require "config.php";
+include "includes/utils.php";
+$config = require "includes/config.php";
 $_1337x_url = "https://1337x.to/search/$query/$page/";
 
 

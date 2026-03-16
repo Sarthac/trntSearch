@@ -1,6 +1,6 @@
 <?php
-include "misc/utils.php";
-$config = require_once "config.php";
+include "includes/utils.php";
+$config = require_once "includes/config.php";
 
 
 function get_yts_results($query, $page)
@@ -11,7 +11,7 @@ function get_yts_results($query, $page)
 
     $results3 = array();
     try {
-        $response = file_get_contents($url);
+        $response = request($url);
         if ($response === false) {
             throw new Exception("yts.mx is down");
         }
@@ -92,7 +92,7 @@ function get_id_by_name($query)
 {
     global $config;
     $url = $config->yts_url . "/api/v2/list_movies.json?query_term=$query&sort_by=like_count";
-    $response = file_get_contents($url);
+    $response = request($url);
     $json_results = json_decode($response, true);
     if ($json_results["status"] == "ok" && $json_results["data"]["movie_count"] != 0) {
         return $json_results["data"]["movies"][0]["id"];
@@ -106,7 +106,7 @@ function get_suggestions($id)
 
     $results3 = array();
 
-    $response = file_get_contents($url);
+    $response = request($url);
     $json_results = json_decode($response, true);
 
     if ($json_results["status"] == "ok") {

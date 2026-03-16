@@ -1,5 +1,5 @@
 <?php
-require "misc/utils.php";
+require "includes/utils.php";
 ?>
 
 <?php
@@ -10,7 +10,7 @@ function get_eztvx_results($query_id)
 {
     global $page;
     $url = "https://eztvx.to/api/get-torrents?imdb_id=$query_id&page=$page";
-    $json = file_get_contents($url);
+    $json = request($url);
     $json_results = json_decode($json, true);
 
     $store_results = array();

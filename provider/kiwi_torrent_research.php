@@ -1,6 +1,6 @@
 <?php
-require 'misc/utils.php';
-$config = require_once "config.php";
+require 'includes/utils.php';
+$config = require_once "includes/config.php";
 
 function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $results_per_page = 20)
 {

@@ -1,9 +1,9 @@
 <?php
 
-require "misc/header.php";
+require "templates/header.php";
 
-$config = require_once "config.php";
-require_once "misc/utils.php";
+$config = require_once "includes/config.php";
+require_once "includes/utils.php";
 $id = $_GET['id'];
 
 
@@ -15,7 +15,7 @@ function get_suggestions($id)
 
     $results3 = array();
 
-    $response = file_get_contents($url);
+    $response = request($url);
     $json_results = json_decode($response, true);
 
     if ($json_results["status"] == "ok") {
@@ -177,4 +177,4 @@ function print_suggestions($results)
 $results = get_suggestions($id);
 print_suggestions($results);
 
-require "misc/footer.php";
+require "templates/footer.php";

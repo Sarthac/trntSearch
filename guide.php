@@ -1,5 +1,5 @@
 <?php
-include "misc/header.php";
+include "templates/header.php";
 ?>
 
 <!DOCTYPE html>
@@ -57,4 +57,4 @@ include "misc/header.php";
 
 
 <?php
-include "misc/footer.php";
+include "templates/footer.php";

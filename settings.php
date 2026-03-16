@@ -1,7 +1,7 @@
 <?php
-include("misc/header.php");
-include("misc/utils.php");
-$config = require_once("config.php");
+include("templates/header.php");
+include("includes/utils.php");
+$config = require_once("includes/config.php");
 
 if (isset($_REQUEST["request"])) {
     $request = $_REQUEST["request"];
@@ -95,6 +95,6 @@ if (isset($_REQUEST["save"])) {
     die();
 }
 
-include("misc/footer.php");
+include("templates/footer.php");
 
 ?>

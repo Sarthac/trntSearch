@@ -1,5 +1,5 @@
 <?php
-require_once 'misc/header.php';
+require_once 'templates/header.php';
 
 $query = htmlspecialchars($_REQUEST["query"]);
 $site = $_REQUEST["site"];
@@ -124,7 +124,7 @@ switch ($site) {
 
     case "1337x":
         include "provider/1337x.php";
-        $response = file_get_contents($_1337x_url);
+        $response = request($_1337x_url);
         $results = get_1337x_results($response);
         print_1337x_results($results, $query);
         for ($i = 1; $i <= 5; $i++) {
@@ -149,7 +149,7 @@ switch ($site) {
 
     case "eztvx":
         include "provider/eztvx.php";
-        include "omdbapi.php";
+        include "includes/omdbapi.php";
         $cookie_name = convert_whole_string($query);
         if (empty($_COOKIE[$cookie_name])) {
             $imdb_id = get_imdb_id($query);
@@ -170,5 +170,5 @@ switch ($site) {
 
 echo "<div class=\"margin-bottom-100\"></div>";
 
-include_once "misc/footer.php";
+include_once "templates/footer.php";
 ?>

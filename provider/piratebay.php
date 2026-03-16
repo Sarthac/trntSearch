@@ -1,6 +1,6 @@
 <?php
-$config = require "config.php";
-require "misc/utils.php";
+$config = require "includes/config.php";
+require "includes/utils.php";
 
 function get_thepiratebay_results($query, $category)
 {
@@ -32,10 +32,15 @@ function get_thepiratebay_results($query, $category)
     }
     global $config;
     $url = "https://apibay.org/q.php?q=$query&cat=$category";
-    $response = file_get_contents($url);
-    $json_response = json_decode($response, true);
-
+    $response = request($url);
+    
     $results = array();
+
+    if ($response === false) {
+        return $results;
+    }
+
+    $json_response = json_decode($response, true);
 
     if (empty($json_response)) {
         return $results;

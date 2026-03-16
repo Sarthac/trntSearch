@@ -33,7 +33,7 @@ if (isset($suggestions)) {
 
         case "1337x":
             include "provider/1337x.php";
-            $response = file_get_contents($_1337x_url);
+            $response = request($_1337x_url);
             $results = get_1337x_results($response);
             break;
 
@@ -49,7 +49,7 @@ if (isset($suggestions)) {
 
         case "eztvx":
             include "provider/eztvx.php";
-            include "omdbapi.php";
+            include "includes/omdbapi.php";
             $omdb_results = get_omdbapi_details($query);
             $omdb_id = get_imdb_id($omdb_results);
             $results = get_eztvx_results($omdb_id);
@@ -61,7 +61,7 @@ if (isset($suggestions)) {
             break;
     }
 } else {
-    include "misc/header.php";
+    include "templates/header.php";
 
     echo "<p>trntSearch API does not require an API key.</p>";
     echo "<p>example: <a href=\"./api.php?query=spider-man&site=yts\">./api.php?query=spider-man&site=yts</a></p>";
@@ -72,7 +72,7 @@ if (isset($suggestions)) {
     echo "<p>suggestions=(type a keyword that you want to get movie suggestions based on keyword. it doesn't need site, query or category as extra parameters)</p>";
     echo "<p>page=(only for eztvx to get result from eztvx pages, defualt 30 results per page)";
 
-    include_once "misc/footer.php";
+    include_once "templates/footer.php";
 
     die();
 }
