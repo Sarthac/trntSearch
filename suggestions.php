@@ -109,11 +109,7 @@ function print_suggestions($results)
 
                 echo "<div class=\"flex-row margin-bottom-100\">";
                 echo "<div class=\"flex-column-center\">";
-                echo "<img src=\"proxy/image_proxy.php?url=$img\">";
-                echo "<div class=\"yts-link\">";
-                echo (!empty($yt_trailer_code)) ? "<a style=\"margin-right : 10px;\" class=\"btn \" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">YT Trailer</a>" : "No Trailer";
-                echo "<a class=\"btn \" href=\"suggestions.php?id=$id\" >Similar Movies</a>";
-                echo "</div>";
+                
                 echo "</div>";
                 echo "<div class=\"t-width\">";
                 echo "<div class=\"title\">";
@@ -134,6 +130,12 @@ function print_suggestions($results)
                 echo " </span>";
                 echo "<span>$year</span>";
                 echo "<a href=\"$libremdb_instance/title/$imdb_code\" target=\"_blank\">...More</a>";
+                
+                echo "<div class=\"margin-top-15\">";
+                echo (!empty($yt_trailer_code)) ? "<a style=\"margin-right : 10px;\" class=\"btn \" href=\"$invidious_instance/watch?v=$yt_trailer_code\" target=\"_blank\">YT Trailer</a>" : "No Trailer";
+                echo "<a class=\"btn \" href=\"suggestions.php?id=$id\" >Similar Movies</a>";
+                echo "</div>";
+                
                 echo "</div>";
                 echo "</div>";
 
