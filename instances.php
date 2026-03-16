@@ -7,23 +7,9 @@ include "templates/header.php";
 
     <table class="instance-table margin-top-50">
         <tr>
-            <th>Hosted</th>
-            <td>NorthAmerica/US</td>
-        </tr>
-        <tr>
             <th>Clearnet</th>
             <td><a href="https://trnt.librey.org">https://trnt.librey.org</a></td>
         </tr>
-
-        <tr>
-            <th>Tor</th>
-            <td><a
-                    href="http://po2fyxzl3tadffsiotc3zvgrb4hgex7xpvlutah3um6ick6cneidkrid.onion">http://po2fyxzl3tadffsiotc3zvgrb4hgex7xpvlutah3um6ick6cneidkrid.onion</a>
-            </td>
-        </tr>
-    </table>
-
-    <table class="instance-table margin-top-50">
         <tr>
             <th>Tor</th>
             <td><a
