@@ -1,16 +1,6 @@
 <?php
 $config = require_once "../includes/config.php";
-function request($url)
-{
-    global $config;
-
-    $ch = curl_init($url);
-    curl_setopt_array($ch, $config->curl_settings);
-    $response = curl_exec($ch);
-
-    return $response;
-}
-
+require_once "../includes/utils.php";
 $image_url = $_GET['url'];
 
 $image_domain = parse_url($image_url, PHP_URL_HOST);

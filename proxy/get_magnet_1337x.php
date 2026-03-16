@@ -1,7 +1,6 @@
 <?php
-$config = require "../includes/config.php";
-require "../includes/utils.php";
-
+$config = require_once "includes/config.php";
+require_once "includes/utils.php";
 $url = $_REQUEST["url"];
 
 $response = request($url);

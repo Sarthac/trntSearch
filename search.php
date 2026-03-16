@@ -124,8 +124,7 @@ switch ($site) {
 
     case "1337x":
         include "provider/1337x.php";
-        $response = request($_1337x_url);
-        $results = get_1337x_results($response);
+        $results = get_1337x_results($query, $page);
         print_1337x_results($results, $query);
         for ($i = 1; $i <= 5; $i++) {
             echo "<a href=\"search.php?query=$query&site=1337x&page=$i\">$i</a>";
