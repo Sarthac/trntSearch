@@ -1,0 +1,3 @@
+rarbg : magnet:?xt=urn:btih:a2ca83e177df5cb1966dfc1d262bc751e4987405&dn=RARBG torrent database&tr=https%3A%2F%2Facademictorrents.com%2Fannounce.php&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce
+kiwi_torrent_research : magnet:?xt=urn:btih:cbead9484058f14671b19c7836ffd154f206cdfe&dn=Kiwi_Torrent_Research_sqlite_30_08_2023
+academic_torrent : https://academictorrents.com/database.xml
