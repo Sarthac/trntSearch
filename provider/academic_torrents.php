@@ -1,14 +1,27 @@
 <?php
 require_once "includes/utils.php";
 $config = require_once "includes/config.php";
-$xml = simplexml_load_file('https://academictorrents.com/database.xml');
 
+// load json file
+$json_file = 'db.json';
+//Read the file content into a string
+$jsonData = file_get_contents($json_file);
+// Decode the string into a PHP Associative Array
+// The 'true' parameter converts it to an array instead of an object
+$data = json_decode($jsonData, true);
+
+// selecting db
+$db = $data["academic_torrent_db"];
+// load xml
+$xml = simplexml_load_file($db);
+
+// getting appropriate data
 $items = $xml->channel->item;
 
 function search_by_name($query, $category)
 {
     global $config, $xml, $items;
-
+    echo "$xml";
     // example "data structure"
     $query = trim($query);
     $results_title = array();
@@ -103,8 +116,10 @@ function search_by_name($query, $category)
 
 function print_academic_torrents_results($results, $query)
 {
-    $total = count($results);
+    global $xml;
 
+    $total = count($results);
+    echo "$xml";
     if ($total != 0) {
         print_total_results($total);
 

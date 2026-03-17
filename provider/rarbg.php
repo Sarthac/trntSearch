@@ -4,7 +4,7 @@
 function get_rarbg_results($query, $sort_by, $page_number, $results_per_page = 20)
 {
     // grabing db
-    $json_data = file_get_contents("secrete.json");
+    $json_data = file_get_contents("db.json");
     $json = json_decode($json_data, true);
     $rarbg_sqlite = $json["rarbg_db"];
 
@@ -60,7 +60,7 @@ function print_rarbg_results($results, $query, $sort_by, $page_number)
     if (isset($results["error"])) {
         echo "<span style=\"color : red;\">" . $results["error"] . " </span>";
         return;
-    } 
+    }
     $total = count($results);
     if ($total != 0) {
         print_total_results($total);
@@ -110,10 +110,7 @@ function print_rarbg_results($results, $query, $sort_by, $page_number)
             echo "<a  class=\"" . ($page_number == $i ? "active" : "") . "\"style=\"margin-right: 15px; display: inline-block;\" href=\"./search.php?query=" . urlencode($query) . "&site=rarbg&sort_by={$sort_by}&page=$i\">$i</a>";
         }
         echo "</div>";
-
     } else {
         print_no_result_text($query);
     }
 }
-
-?>

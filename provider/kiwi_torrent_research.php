@@ -3,7 +3,7 @@
 function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $results_per_page = 20)
 {
     // grabing database
-    $json_data = file_get_contents("secrete.json");
+    $json_data = file_get_contents("db.json");
     $json = json_decode($json_data, true);
     $db_file = $json["kiwi_db"];
 
