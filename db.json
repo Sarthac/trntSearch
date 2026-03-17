@@ -1,0 +1,5 @@
+{
+    "academic_torrent_db":"db/database.xml",
+    "rarbg_db": "db/rarbg_db.sqlite",
+    "kiwi_db": "db/dump_30_08_2023.sqlite"
+}
