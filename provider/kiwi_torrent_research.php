@@ -2,11 +2,16 @@
 
 function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $results_per_page = 20)
 {
-    $kiwi_torrent_research_sqlite = 'assets/dump_30_08_2023.sqlite';
+    // grabing database
+    $json_data = file_get_contents("secrete.json");
+    $json = json_decode($json_data, true);
+    $db_file = $json["kiwi_db"];
+
+    // importing require files
     $config = require "includes/config.php";
 
-    if (extension_loaded('sqlite3') && file_exists($kiwi_torrent_research_sqlite)) {
-        $db = new SQLite3($kiwi_torrent_research_sqlite);
+    if (extension_loaded('sqlite3') && file_exists($db_file)) {
+        $db = new SQLite3($db_file);
         $offset = ($page_number - 1) * $results_per_page;
         $db_query = "SELECT infohash,name,size,uploaded,num_files FROM torrents WHERE LOWER(name) LIKE LOWER('%$query%')";
 
@@ -56,12 +61,12 @@ function get_kiwi_torrent_research_results($query, $sort_by, $page_number, $resu
 
 function print_kiwi_torrent_research_results($results, $sort_by, $query, $page_number)
 {
-    global $config;
+    require_once "includes/utils.php";
+
     if (isset($results["error"])) {
         echo "<span style=\"color : red;\">" . $results["error"] . " </span>";
     } else if (count($results) > 0) {
-        // print_total_results($total_results);
-
+        print_total_results(count($results));
         foreach ($results as $result) {
             $hash = $result['hash'];
             $title = $result['title'];

@@ -3,9 +3,15 @@
 
 function get_rarbg_results($query, $sort_by, $page_number, $results_per_page = 20)
 {
-    $rarbg_sqlite = 'assets/rarbg_db.sqlite';
+    // grabing db
+    $json_data = file_get_contents("secrete.json");
+    $json = json_decode($json_data, true);
+    $rarbg_sqlite = $json["rarbg_db"];
+
+    // importing require files
     $config = require "includes/config.php";
     require "includes/utils.php";
+
     if (extension_loaded('sqlite3') && file_exists($rarbg_sqlite)) {
         $db = new SQLite3($rarbg_sqlite);
         $offset = ($page_number - 1) * $results_per_page;

@@ -1,13 +1,10 @@
 <?php
 
-$json_data = file_get_contents("assets/secrete.json");
+$json_data = file_get_contents("secrete.json");
 $json = json_decode($json_data, true);
 $api_key = $json["api_key"];
 
 $url = "https://www.omdbapi.com/?t={$query}&apikey={$api_key}";
-
-
-
 
 function get_omdbapi_details($query)
 {
