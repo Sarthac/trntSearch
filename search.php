@@ -106,7 +106,7 @@ switch ($site) {
 
     case "yts":
         include "provider/yts.php";
-        $results = get_yts_results($query, $page);
+        $results = get_yts_results(urlencode($query), $page);
         print_yts_torrent_results($results, $query, $page);
         break;
 
